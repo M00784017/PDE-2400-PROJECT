@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import opc
 import time
 #this is the rgb color for yellow, and I multiplied it by the number of leds
@@ -13,7 +13,7 @@ client = opc.Client('localhost:7890')
 client.put_pixels(yellow)
 time.sleep(1)
 
-=======
+
 import opc
 import time
 #this is the rgb color for yellow, and I multiplied it by the number of leds
@@ -28,4 +28,4 @@ client = opc.Client('localhost:7890')
 client.put_pixels(yellow)
 time.sleep(1)
 
->>>>>>> 3effa6580522ddcb63c350dec6d018aacd14bcec
+
