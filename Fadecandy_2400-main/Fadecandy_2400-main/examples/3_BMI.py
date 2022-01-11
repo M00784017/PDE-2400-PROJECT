@@ -67,7 +67,7 @@ for ob in range (30,60):
     for ob1 in range(0,3):
         calci[ob+60*ob1] = (255,0,0) #red for overweight
     
-for cc in range (0,180):
+for cc in range (0,360):
     calci1[cc] = calci [cc]
 
 

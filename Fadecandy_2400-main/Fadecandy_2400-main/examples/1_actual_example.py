@@ -3,7 +3,7 @@
 import opc
 import time
 
-led_colour=[(255,0,0)]*10
+led_colour=[(255,0,0)]*360 #red colour only
 
 client = opc.Client('localhost:7890')
 
