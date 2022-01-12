@@ -39,6 +39,7 @@ def rgb(val):
             
             print ('Merry Christmas')
             time.sleep(0.3)
+    
 
     return my_pixels
 
@@ -67,5 +68,3 @@ elif value == 3:
 
 if value>3 or value<1:
     value = input("please input a number between 1 and 3. ")
-
-
