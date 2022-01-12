@@ -6,13 +6,13 @@ value = input('''Welcome to the menu. Options are listed below:,
 import opc
 import time
 import random
-
+#defining variables
 yellow=[(255,255,0)]*360
 red= [ (0,255,0)] *360
 client = opc.Client('localhost:7890')
 numLEDs= 360
 
-
+#defining functions and what they do 
 def color(val):
     return client.put_pixels(yellow)
 
@@ -22,9 +22,9 @@ def chase(val):
         
     for i in range(numLEDs):
         
-            pixels = [ (0,0,255)] * numLEDs
+            pixels = [ (0,0,255)] * numLEDs #print blue on all the leds which is 360
         
-            pixels[i] = (255, 0, 0)
+            pixels[i] = (255, 0, 0) #make a single red led move through all
             client.put_pixels(pixels)
             time.sleep(0.1)
     
