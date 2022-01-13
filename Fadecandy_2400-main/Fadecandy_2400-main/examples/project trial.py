@@ -1,4 +1,4 @@
-value = input('''Welcome to the menu. Options are listed below:,
+x = input('''Welcome to the menu. Options are listed below:,
               \t 1.chase
               \t 2. plain yellow
               \t 3. Random RGB
@@ -14,7 +14,9 @@ numLEDs= 360
 
 #defining functions and what they do 
 def color(val):
-    return client.put_pixels(yellow)
+    
+    
+   client.put_pixels(yellow)
 
 time.sleep(1)
 def chase(val):
@@ -26,45 +28,45 @@ def chase(val):
         
             pixels[i] = (255, 0, 0) #make a single red led move through all
             client.put_pixels(pixels)
-            time.sleep(0.1)
+            time.sleep(0.05)
     
-    return client.put_pixels(pixels)
 def rgb(val):
     while True:
         
         my_pixels = [(255, 0, 0), (0, 255, 0), (0, 0, 255)]*120
         random.shuffle(my_pixels)
-        
+       
         if client.put_pixels(my_pixels, channel=0):
             
-            print ('Merry Christmas')
+            
             time.sleep(0.3)
     
 
-    return my_pixels
 
 while True:
-    if value.isdigit() == True: # .isdigit() 
-        value = int(value)
-        if value>3 or value<1:
+    if x.isdigit() == True: # .isdigit() 
+        x = int(x)
+        if x>3 or x<1:
             
-            value = input("please input a number between 1 and 3. ")
+            x = input("please input a number between 1 and 3. ")
             continue
         else:
             
 
             break # on correct value datatype: exit the loop
     else:
-        value=input("invalid input, please provide an integer:") #ask for a new value
+        x=input("invalid input, please provide an integer:") #ask for a new value
 #print("The converted is:", value)
 #print(f'it is of type {type(value)}.')
 #compare numeric value to choices available, perform assicoated function or sequence.
-if value == 1:
-    print(chase(value))
-elif value == 2:
-    print(color(value))
-elif value == 3:
-    print(rgb(value))
+if x == 1:
+    print(chase(x))
+elif x == 2:
+    print(color(x))
+elif x == 3:
+    print ('Merry Christmas')
+    print(rgb(x))
+    
 
-if value>3 or value<1:
-    value = input("please input a number between 1 and 3. ")
+if x>3 or x<1:
+    x = input("please input a number between 1 and 3. ")

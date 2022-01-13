@@ -1,91 +1,47 @@
-import time
+import opc, time
 
-# 3rd party imports
-#
-import opc
+numLEDs = 360
+client = client = opc.Client('localhost:7890')
 
-ADDRESS = 'localhost:7890'
-NUM_PIXELS = 300
-
-####################################################################
-#
-def color_wheel(wheel_pos):
-    """
-    Keyword Arguments:
-    wheel_pos -- Return a color based on the specific position on the wheel
-                 This is an integer between 0-255 inclusive.
-    """
-    if wheel_pos < 85:
-        return (wheel_pos * 3, 255 - wheel_pos * 3, 0)
-    elif wheel_pos < 170:
-        wheel_pos -= 85
-        return (255 - wheel_pos * 3, 0, wheel_pos * 3)
-    else:
-        wheel_pos -= 170
-        return (0, wheel_pos * 3, 255 - wheel_pos * 3)
-
-
-########################################################################
-########################################################################
-#
-class Animation(object):
-    """
-    Base animation class
-    """
-
-    ####################################################################
-    #
-    def __init__(self, num_pixels):
-        self.num_pixels = num_pixels
-        pass
-
-    ####################################################################
-    #
-    def one_frame(self, frame):
-        """
-        Produce one frame of animation. We return an array of the colors
-        to light up.
-        """
-        raise NotImplemented
-
-
-########################################################################
-########################################################################
-#
-class LayerCake(Animation):
-    """
-    Layers of color going up or down the tree...
-    """
-
-    ####################################################################
-    #
-    def __init__(self, num_pixels, down=True, brightness=1.0):
-        
-        super(LayerCake, self).__init__(num_pixels)
-        self.num_frames = 256
-        return
-
-
-#############################################################################
-#
-def main():
-    """
-    Find out which pattern they want to run and go with it..
-    """
-    client = opc.Client(ADDRESS)
-    if client.can_connect():
-        print('connected to %s' % ADDRESS)
-    else:
-        print('WARNING: could not connect to %s' % ADDRESS)
-        return
-    return
-
-############################################################################
-############################################################################
-#
-# Here is where it all starts
-#
-if __name__ == '__main__':
-    main()
-#
-#####################################################################
+while True:
+    for i in range(59, 0, -1):
+        pixels = [ (0,0,0) ] * numLEDs
+        pixels[i] = (255, 255, 255)
+        client.put_pixels(pixels)
+        time.sleep(0.01)
+    for i in range(60, 119):
+        pixels = [ (0,0,0) ] * numLEDs
+        pixels[i] = (255, 255, 255)
+        client.put_pixels(pixels)
+        time.sleep(0.01)
+    for i in range(179, 120, -1):
+        pixels = [ (0,0,0) ] * numLEDs
+        pixels[i] = (255, 255, 255)
+        client.put_pixels(pixels)
+        time.sleep(0.01)
+    for i in range(180, 239):
+        pixels = [ (0,0,0) ] * numLEDs
+        pixels[i] = (255, 255, 255)
+        client.put_pixels(pixels)
+        time.sleep(0.01)
+    for i in range(299, 240, -1):
+        pixels = [ (0,0,0) ] * numLEDs
+        pixels[i] = (255, 255, 255)
+        client.put_pixels(pixels)
+        time.sleep(0.01)
+    for i in range(300, 359):
+        pixels = [ (0,0,0) ] * numLEDs
+        pixels[i] = (255, 255, 255)
+        client.put_pixels(pixels)
+        time.sleep(0.01)
+    for i in range(419, 360, -1):
+        pixels = [ (0,0,0) ] * numLEDs
+        pixels[i] = (255, 255, 255)
+        client.put_pixels(pixels)
+        time.sleep(0.01)
+    for i in range(420, 479):
+        pixels = [ (0,0,0) ] * numLEDs
+        pixels[i] = (255, 255, 255)
+        client.put_pixels(pixels)
+        time.sleep(0.01)
+ 
