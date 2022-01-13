@@ -6,6 +6,7 @@ x = input('''Welcome to the menu. Options are listed below:,
 import opc
 import time
 import random
+
 #defining variables
 yellow=[(255,255,0)]*360
 red= [ (0,255,0)] *360
