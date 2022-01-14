@@ -8,8 +8,8 @@ import time
 import random
 
 #defining variables
-yellow=[(255,255,0)]*360
-red= [ (0,255,0)] *360
+mix=[(175,255,50)]*360
+red= [ (255,0,0)] *360
 client = opc.Client('localhost:7890')
 numLEDs= 360
 
@@ -17,7 +17,7 @@ numLEDs= 360
 def color(val):
     
     
-   client.put_pixels(yellow)
+   client.put_pixels(mix)
 
 time.sleep(1)
 def chase(val):
