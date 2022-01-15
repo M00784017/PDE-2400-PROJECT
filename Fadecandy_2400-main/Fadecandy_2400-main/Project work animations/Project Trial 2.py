@@ -47,7 +47,7 @@ def menu():
     
     print('\nEnter the number of the flag you wish to be displayed:')
     print('\n1. Palestine\n')
-    x = int(input()) 
+    x = int(input()) #the value from the user is an integer
     while(x not in (1,2,3,4)):
         
         print('\nPlease enter a valid input!\n')
