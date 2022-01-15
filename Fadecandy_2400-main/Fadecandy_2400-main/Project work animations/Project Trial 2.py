@@ -21,6 +21,7 @@ green = (0,255,0)
 
 
  
+ 
 
 
 client = opc.Client('localhost:7890') #connects to simulator
