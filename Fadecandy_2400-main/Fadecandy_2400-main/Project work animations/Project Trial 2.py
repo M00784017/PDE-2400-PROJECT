@@ -20,6 +20,7 @@ red = (255,0,0)
 green = (0,255,0)
 
 
+
  
  
 
@@ -27,7 +28,6 @@ green = (0,255,0)
 client = opc.Client('localhost:7890') #connects to simulator
 def Palestine():
     for number, colour in enumerate(led_colour):
-        
         if number in P:
             led_colour[number] = red
         if number in A:
@@ -55,7 +55,7 @@ def menu():
         x = int(input()) 
     
     if x == 1:
-        return Palestine()
+        return Palestine() #at the moment this is the only country flag I have
 
     
 while True:
