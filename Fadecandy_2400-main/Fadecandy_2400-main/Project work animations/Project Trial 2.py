@@ -12,14 +12,21 @@ T=range(126,180)
 I = range(245,300)
 N=range(302,330)
 E=range(304,360)
-
+G=range(0,27)
+D=range(33,87)
+D1=range(93,120)
 grey=(100,100,100)  #dark grey color number 
 black = (0,0,0)
 white = (255,255,255)
 red = (255,0,0)
 green = (0,255,0)
-
-
+D2=range(240,267)
+D3=range(273,327)
+D4=range(333,360)
+D5=range(27,33)
+D6=range(87,93)
+D7=range(267,273)
+D8=range(327,333)
 
  
  
@@ -43,11 +50,35 @@ def Palestine():
             led_colour[number] = green   
         if number in E:
             led_colour[number] = green
-
+def England():
+    
+    for number, colour in enumerate(led_colour):
+        if number in G:
+            led_colour[number] = white
+        if number in D:
+            led_colour[number] = white
+        if number in D1:
+            led_colour[number] = white
+        if number in D2:
+            led_colour[number] = white
+        if number in D3:
+            led_colour[number] = white
+        if number in D4:
+            led_colour[number] = white
+        if number in D5:
+            led_colour[number] = red
+        if number in D6:
+            led_colour[number] = red
+        if number in D7:
+            led_colour[number] = red
+        if number in D8:
+            led_colour[number] = red   
+        if (number % 360 >= 120) and (number % 360 < 240):
+            led_colour[number] = red
 def menu(): 
     
     print('\nEnter the number of the flag you wish to be displayed:')
-    print('\n1. Palestine\n')
+    print('\n1. Palestine\n2.England')
     x = int(input()) #the value from the user is an integer
     while(x not in (1,2,3,4)):
         
@@ -56,7 +87,8 @@ def menu():
     
     if x == 1:
         return Palestine() #at the moment this is the only country flag I have
-
+    elif x==2:
+        return England()
     
 while True:
     menu()
