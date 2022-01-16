@@ -22,6 +22,8 @@ D5=range(27,33)
 D6=range(87,93)
 D7=range(267,273)
 D8=range(327,333)
+E1=range(208,212)
+E2=range(148,152)
 #defining colour numbers in rgb
 grey=(100,100,100)  #dark grey color number 
 black = (0,0,0)
@@ -29,8 +31,8 @@ white = (255,255,255)
 red = (255,0,0)
 green = (0,255,0)
 orange=(255,165,0)
- 
-
+yellow=(255,255,0)
+blue=(0,0,255)
 
 client = opc.Client('localhost:7890') #connects to simulator
 def Palestine():
@@ -86,11 +88,21 @@ def Ireland():
         #red part of flag:
         if (number % 60 >= 40) and (number % 60 <= 80):
             led_colour[number] = orange
+def Ukraine():
+    for number, colour in enumerate(led_colour):#iterate through 360 LEDs (with an index (count))
+        #black part of flag:
+        if number % 360 <= 180:
+            led_colour[number] = blue
+
+        
+        #yellow part of flag:
+        if (number % 360 >= 180):
+            led_colour[number] = yellow
 
 def menu(): 
     
     print('\nEnter the number of the flag you wish to be displayed:')
-    print('\n1. Palestine\n2. England\n3. Ireland')
+    print('\n1. Palestine\n2. England\n3. Ireland\n4. Ukraine')
     x = int(input()) #the value from the user is an integer
     while(x not in (1,2,3,4)):
         
@@ -103,6 +115,8 @@ def menu():
         return England()
     elif x==3:
         return Ireland()
+    elif x==4:
+        return Ukraine()
     
 while True:
     menu()
