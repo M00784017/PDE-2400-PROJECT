@@ -36,22 +36,22 @@ blue=(0,0,255)
 
 client = opc.Client('localhost:7890') #connects to simulator
 def Palestine():
-    for number, colour in enumerate(led_colour):
-        if number in P:
-            led_colour[number] = red
-        if number in A:
-            led_colour[number] = grey #although the palestine flag is black instead of grey here, I put dark grey because black will not appear.
-        if number in L:
-            led_colour[number] = grey
-        if number in S:
-            led_colour[number] = white
-        if number in T:
-            led_colour[number] = white
+    for i in range(len(led_colour)):
+        if i in P:
+            led_colour[i] = red
+        if i in A:
+            led_colour[i] = grey #although the palestine flag is black instead of grey here, I put dark grey because black will not appear.
+        if i in L:
+            led_colour[i] = grey
+        if i in S:
+            led_colour[i] = white
+        if i in T:
+            led_colour[i] = white
         
-        if number in I:
-            led_colour[number] = green   
-        if number in E:
-            led_colour[number] = green
+        if i in I:
+            led_colour[i] = green   
+        if i in E:
+            led_colour[i] = green
 def England():
     
     for number, colour in enumerate(led_colour):
@@ -99,7 +99,7 @@ def Ukraine():
         if (number % 360 >= 180):
             led_colour[number] = yellow
 
-def menu(): 
+def options(): 
     
     print('\nEnter the number of the flag you wish to be displayed:')
     print('\n1. Palestine\n2. England\n3. Ireland\n4. Ukraine')
@@ -119,11 +119,11 @@ def menu():
         return Ukraine()
     
 while True:
-    menu()
+    options()
     client.put_pixels(led_colour) 
   
     
     client.put_pixels(led_colour)
     sleep(1) 
-    break #till now that is the end of the animation
+    #break #till now that is the end of the animation
 
