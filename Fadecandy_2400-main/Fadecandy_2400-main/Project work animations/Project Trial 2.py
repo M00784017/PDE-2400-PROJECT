@@ -77,6 +77,7 @@ def England():
             led_colour[number] = red   
         if (number % 360 >= 120) and (number % 360 < 240):
             led_colour[number] = red
+        
 def Ireland():
     for number, colour in enumerate(led_colour):#iterate through 360 LEDs (with an index (count))
         #green part of flag:
@@ -120,7 +121,8 @@ def options():
     
     if x == 1:
         return Palestine()
-        print('Capital City is AL-QUDS')
+    
+        
     elif x==2:
         return England()
     elif x==3:
@@ -129,31 +131,45 @@ def options():
         return Ukraine()
     elif x==5:
         return Germany()
-def flash(num_times): #this will flash the flag with the input from the user
-    i = 0
-    while (i < num_times): #iterate through the user input
-        #make screen all black:
-        blackout = [black]*360
-        client.put_pixels(blackout)
-        sleep(0.5) #delay
-        #display selected flag on screen (stored on list led_colour)
-        client.put_pixels(led_colour)
-        sleep(0.5)#delay
-        i += 1 #update iteration variable
-def menu_flashing(): #this menu asks for user input in order to flash the flag
-    print("\nHow many times do you want to flash the selected flag? (value must be between 1 and 10)")
-    y = int(input())
-    while (y < 1) or (y>10): #this checks for user input between 1 and 10
-        print("\nPlease enter a valid input:\t")
-        y = int(input())
-    flash(y) #calls function that flashes the flag   
+def user():
+    print("Which country are you currently in")
+    z=input()
+    print("What is the weather in", z)
+    print("Is it \n1 Rainy.\n2 Sunny\n3. Cloudy\n")
+    weather=input()
+    if weather=='Rainy' or 'rainy':
+        print("As Usual")
+        screen = [black]*360
+        client.put_pixels(screen)
+        
+        for i in range(0,360):
+            
+            if i%2 ==0:
+                
+                screen[i] = blue
+                sleep(0.1)
+                client.put_pixels(screen)
+                
+    elif weather=='Sunny' or 'sunny':
+        print("Nice")
+        screen = [black]*360
+        client.put_pixels(screen)
+        
+        for i in range(0,360):
+            
+            if i%2 ==0:
+                
+                screen[i] = yellow
+                sleep(0.1)
+                client.put_pixels(screen)
 while True:
     options()
-    menu_flashing()
     client.put_pixels(led_colour) 
-  
+    
     
     client.put_pixels(led_colour)
-    sleep(1) 
+    sleep(1)
+    
+    user()
     #break #till now that is the end of the animation
 
