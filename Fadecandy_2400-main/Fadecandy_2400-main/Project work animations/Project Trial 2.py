@@ -98,28 +98,58 @@ def Ukraine():
         #yellow part of flag:
         if (number % 360 >= 180):
             led_colour[number] = yellow
+def Germany():
+    for i in range(len(led_colour)):
+        if i % 360 <= 120:
+            led_colour[i] = grey
+        if (i % 360 >= 120) and (i % 360 < 240):
+            led_colour[i] = red
+   
+        if (i % 360 >= 240) and (i % 360 < 360):
+            led_colour[i] = yellow
 
 def options(): 
     
     print('\nEnter the number of the flag you wish to be displayed:')
-    print('\n1. Palestine\n2. England\n3. Ireland\n4. Ukraine')
+    print('\n1. Palestine\n2. England\n3. Ireland\n4. Ukraine\n5. Germany')
     x = int(input()) #the value from the user is an integer
-    while(x not in (1,2,3,4)):
+    while(x not in (1,2,3,4,5)):
         
-        print('\nPlease enter a value between 1-4!\n')
+        print('\nPlease enter a value between 1-5!\n')
         x = int(input()) 
     
     if x == 1:
-        return Palestine() #at the moment this is the only country flag I have
+        return Palestine()
+        print('Capital City is AL-QUDS')
     elif x==2:
         return England()
     elif x==3:
         return Ireland()
     elif x==4:
         return Ukraine()
-    
+    elif x==5:
+        return Germany()
+def flash(num_times): #this will flash the flag with the input from the user
+    i = 0
+    while (i < num_times): #iterate through the user input
+        #make screen all black:
+        blackout = [black]*360
+        client.put_pixels(blackout)
+        sleep(0.5) #delay
+        #display selected flag on screen (stored on list led_colour)
+        client.put_pixels(led_colour)
+        sleep(0.5)#delay
+        i += 1 #update iteration variable
+def menu_flashing(): #this menu asks for user input in order to flash the flag
+    print("\nHow many times do you want to flash the selected flag? (value must be between 1 and 10)")
+    y = int(input())
+    while (y < 1) or (y>10): #this checks for user input between 1 and 10
+        print("\nPlease enter a valid input:\t")
+        y = int(input())
+    flash(y) #calls function that flashes the flag   
 while True:
     options()
+    menu_flashing()
     client.put_pixels(led_colour) 
   
     
