@@ -1,6 +1,6 @@
 import opc #imports the simulator
 from time import sleep #we just need sleep from time
-
+import colorsys
 led_colour=[(0,0,0)]*360 
 # The numbers in each letter represent a pixel in the simulator 60*6
 P = [0,1,2,3,60,61,62,63,64,120,121,122,123,124,125,180,181,182,183,184,185,240,241,242,243,244,300,301,302,303] 
@@ -33,8 +33,11 @@ green = (0,255,0)
 orange=(255,165,0)
 yellow=(255,255,0)
 blue=(0,0,255)
-
+light_blue=(173, 216, 230)
 client = opc.Client('localhost:7890') #connects to simulator
+s = 1 #saturation max 1.0 so i don't have to redefine calculations as floating point later on 
+v = 0.8 #value max 
+pixels = [] #start empty
 def Palestine():
     for i in range(len(led_colour)):
         if i in P:
@@ -135,33 +138,69 @@ def user():
     print("Which country are you currently in")
     z=input()
     print("What is the weather in", z)
-    print("Is it \n1 Rainy.\n2 Sunny\n3. Cloudy\n")
-    weather=input()
-    if weather=='Rainy' or 'rainy':
+    print("Is it \n1 Rainy.\n2 Sunny\n3.Cloudy\n4.Rainbow\n")
+    print("Please eneter a value from 1-4")
+    weather=int(input())#only integers at the moment
+    if weather== 1 or weather== 'Rainy' or weather=='rainy':
         print("As Usual")
         screen = [black]*360
         client.put_pixels(screen)
         
-        for i in range(0,360):
+        for i in range(360):
             
-            if i%2 ==0:
+            if i%3 ==0:
                 
                 screen[i] = blue
-                sleep(0.1)
+                sleep(0.01)
                 client.put_pixels(screen)
                 
-    elif weather=='Sunny' or 'sunny':
+    elif weather== 2 or weather=='Sunny' or weather=='sunny':
         print("Nice")
         screen = [black]*360
         client.put_pixels(screen)
         
-        for i in range(0,360):
+        for i in range(360):
             
-            if i%2 ==0:
+            if i%3 ==0:
                 
                 screen[i] = yellow
-                sleep(0.1)
+                sleep(0.01)
                 client.put_pixels(screen)
+
+    elif weather== 3 or weather=='cloudy' or weather=='Cloudy':
+        print("Cool")
+        screen = [black]*360
+        client.put_pixels(screen)
+        
+        for i in range(360):
+            
+            if i%3 ==0:
+                
+                screen[i] = light_blue
+                sleep(0.01)
+                client.put_pixels(screen)
+
+    elif weather==4:
+        print('Rainbow!!!!')
+        for hue in range(360):
+            
+            
+            rgb_fractional = colorsys.hsv_to_rgb(hue/360.0, s, v) 
+             
+
+            r_float = rgb_fractional[0] #extract said floating point numbers
+            g_float = rgb_fractional[1]
+            b_float = rgb_fractional[2]
+
+    
+
+            rgb = (r_float*176, g_float*200, b_float*255) 
+            pixels.append(rgb)
+            
+                        
+            client.put_pixels(pixels)
+            sleep(0.01) #speed of animation controlled through this
+    
 while True:
     options()
     client.put_pixels(led_colour) 

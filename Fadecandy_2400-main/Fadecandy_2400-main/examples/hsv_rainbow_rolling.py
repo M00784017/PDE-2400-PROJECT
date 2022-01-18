@@ -1,7 +1,7 @@
 import opc
 from time import sleep
 import colorsys
-import numpy
+
 
 client = opc.Client('localhost:7890')
 #client = opc.Client('192.168.2.1:7890')
@@ -34,5 +34,5 @@ while True:
         client.put_pixels(pixels)
         # This rolls the entire tuple forward.
         #print pixels #debug
-        pixels = numpy.roll(pixels,3) #roll by 3 because func seems to not care about tuples and rolled elements from them by 1.
+         #roll by 3 because func seems to not care about tuples and rolled elements from them by 1.
         sleep(0.02) #speed of animation controlled through this
