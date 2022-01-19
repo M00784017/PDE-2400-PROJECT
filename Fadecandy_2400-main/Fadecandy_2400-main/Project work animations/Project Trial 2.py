@@ -55,6 +55,8 @@ def Palestine():
             led_colour[i] = green   
         if i in E:
             led_colour[i] = green
+ 
+        
 def England():
     
     for number, colour in enumerate(led_colour):
