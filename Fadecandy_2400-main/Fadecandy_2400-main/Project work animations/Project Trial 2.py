@@ -172,11 +172,11 @@ def Armenia():
     led = 0
 
     while led < 60 :#scroll all rows at the same time
-        for rows in range (2): #first three rows left to right
+        for rows in range (2): #first 2 rows
             led_colour[59-led + rows * 60] = (255,0,0)
-        for rows in range (2,4): #first three rows left to right
+        for rows in range (2,4): #second 2 rows
             led_colour[led + rows * 60] = (0,0,255)
-        for rows in range (4,6): #first three rows left to right
+        for rows in range (4,6): #third 2 rows
             led_colour[59-led + rows * 60] = (255,165,0)
         client.put_pixels(led_colour)
         sleep(0.1)
