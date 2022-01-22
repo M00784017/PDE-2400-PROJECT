@@ -1,6 +1,7 @@
 import opc #imports the simulator
 from time import sleep #we just need sleep from time
 import colorsys
+import random
 led_colour=[(0,0,0)]*360 
 # The numbers in each letter represent a pixel in the simulator 60*6
 P = [0,1,2,3,60,61,62,63,64,120,121,122,123,124,125,180,181,182,183,184,185,240,241,242,243,244,300,301,302,303] 
@@ -38,6 +39,21 @@ client = opc.Client('localhost:7890') #connects to simulator
 s = 1 #saturation max 1.0 so i don't have to redefine calculations as floating point later on 
 v = 0.8 #value max 
 pixels = [] #start empty
+numLEDs=360
+ #FOR MOREANIMATIONS FUNCTION
+color_run = [(-2, .05), (-2, .15), (-1, .25), (0, .40), (1, .1), (2, .02)]
+drop_blur = [(0, .25), (1, .5), (2, .95), (3, .5), (4, .25)]
+
+# Add horizontal siblings to blur
+scale = .8
+total = sum([mul for (_, mul) in color_run])
+spare = total*(1-scale)
+middle = [(off, mul*scale) for (off, mul) in color_run]
+left   = [(off-64, mul*spare/2) for (off, mul) in color_run]
+right  = [(off+64, mul*spare/2) for (off, mul) in color_run]
+color_run = left + middle + right
+total = sum([mul for (_, mul) in color_run])
+print("Run total: %f" % total)
 def Palestine():
     for i in range(len(led_colour)):
         if i in P:
@@ -257,6 +273,66 @@ def user():
                         
             client.put_pixels(pixels)
             sleep(0.01) #speed of animation controlled through this
+def MoreAnimations():
+    print("Please Select which animation you would like to see")
+    print("\n1 rgb fading.\n2 Fading movement\n3.Police\n")
+    T=int(input())
+    if T==1:
+        
+        colors = []
+        for i in range(0, 255):
+            r = i
+            g = 0
+            b = 255-i
+            colors.append((r,g,b))
+        for i in range(0, 255):
+            g = i
+            b = 0
+            r = 255-i
+            colors.append((r,g,b))
+        for i in range(0, 255):
+            b = i
+            r = 0
+            g = 255-i
+            colors.append((r,g,b))
+        while True:
+            for x in colors:
+                pixels = [ x ] * numLEDs
+                client.put_pixels(pixels)
+                sleep(.01)
+    elif T==2:
+        pixels = [ (0,0,0) ] * numLEDs
+        while True:
+            # Let the colors run
+            new_pixels = list(pixels)
+            for i in range(numLEDs):
+                r, g, b = 0, 0, 0
+                for offset, mul in color_run:
+                    j = (numLEDs+offset+i) % numLEDs
+                    r = r + pixels[j][0]*mul
+                    g = g + pixels[j][1]*mul
+                    b = b + pixels[j][2]*mul
+                new_pixels[i] = max(2, min(255, r)), max(2, min(255, g)), max(2, min(255, b))
+
+            for x in range(numLEDs*6%64):
+                if(random.randint(0,12) == 0):
+                    # Add a new drop of color...
+                    drop_spot = random.randint(0, numLEDs)
+                    drop_color = (random.randint(0, 256), random.randint(0, 256), random.randint(0, 256))
+                    for offset, mul in drop_blur:
+                        i = (offset + drop_spot) % numLEDs
+                        color = []
+                        for c in 0, 1, 2:
+                            color.append(drop_color[c]*mul + new_pixels[i][c]*(1-mul))
+                        new_pixels[i] = tuple(color)
+            pixels = new_pixels
+            client.put_pixels(pixels)
+            sleep(.2)
+
+    
+
+
+        
 
 while True:
     options()
@@ -267,5 +343,7 @@ while True:
     sleep(1)
     
     user()
+    sleep(1)
+    MoreAnimations()
     #break #till now that is the end of the animation
 
