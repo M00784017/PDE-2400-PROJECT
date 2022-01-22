@@ -71,7 +71,7 @@ def Palestine():
             led_colour[i] = green   
         if i in E:
             led_colour[i] = green
- 
+    print("CAPITAL CITY OF PALESTINE IS : ALQUDS")
         
 def England():
     
@@ -98,7 +98,7 @@ def England():
             led_colour[number] = red   
         if (number % 360 >= 120) and (number % 360 < 240):
             led_colour[number] = red
-        
+    print("CAPITAL CITY OF ENGLAND IS : LONDON")
 def Ireland():
     led=0
     while led<20:
@@ -125,7 +125,7 @@ def Ireland():
         client.put_pixels(led_colour)
         sleep(0.1)
         led = led + 1 #or reverse if you want
-    
+    print("CAPITAL CITY OF IRELAND IS : DUBLIN")
 def Ukraine():
     for number, colour in enumerate(led_colour):#iterate through 360 LEDs (with an index (count))
         #black part of flag:
@@ -136,6 +136,7 @@ def Ukraine():
         #yellow part of flag:
         if (number % 360 >= 180):
             led_colour[number] = yellow
+    print("CAPITAL CITY OF UKRAIN IS : KIEV")
 
 def Germany():
     led = 0
@@ -163,7 +164,8 @@ def Germany():
             led_colour[59-led + rows*60] = (255,255,0)
             client.put_pixels(led_colour)
             sleep(0.1)
-            led = led+1 
+            led = led+1
+    print("CAPITAL CITY OF GERMANY IS : BERLIN")
 
   
 def Armenia():
@@ -179,7 +181,7 @@ def Armenia():
         client.put_pixels(led_colour)
         sleep(0.1)
         led = led + 1
-           
+    print("CAPITAL CITY OF ARMENIA IS : YEREVAN")
 
 def options(): 
     
@@ -193,7 +195,7 @@ def options():
     
     if x == 1:
         return Palestine()
-    
+        
         
     elif x==2:
         return England()
@@ -275,7 +277,7 @@ def user():
             sleep(0.01) #speed of animation controlled through this
 def MoreAnimations():
     print("Please Select which animation you would like to see")
-    print("\n1 rgb fading.\n2 Fading movement\n3.Police\n")
+    print("\n1 RGB Fading.\n2 Fading movement\n3.Police\n")
     T=int(input())
     if T==1:
         
@@ -329,7 +331,7 @@ def MoreAnimations():
             client.put_pixels(pixels)
             sleep(.2)
 
-    
+    #THE POLICE ANIMATION WILL BE ADDED HERE, I STILL HAVENT DONE IT
 
 
         
