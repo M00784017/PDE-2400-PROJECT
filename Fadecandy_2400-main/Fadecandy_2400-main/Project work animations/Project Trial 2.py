@@ -195,8 +195,10 @@ def user():
     print("What is the weather in", z)
     print("Is it \n1 Rainy.\n2 Sunny\n3.Cloudy\n4.Rainbow\n")
     print("Please eneter a value from 1-4")
+ 
+
     weather=int(input())#only integers at the moment
-    if weather== 1 or weather== 'Rainy' or weather=='rainy':
+    if weather== 1 :
         print("As Usual")
         screen = [black]*360
         client.put_pixels(screen)
@@ -209,7 +211,7 @@ def user():
                 sleep(0.01)
                 client.put_pixels(screen)
                 
-    elif weather== 2 or weather=='Sunny' or weather=='sunny':
+    elif weather== 2 :
         print("Nice")
         screen = [black]*360
         client.put_pixels(screen)
@@ -222,7 +224,7 @@ def user():
                 sleep(0.01)
                 client.put_pixels(screen)
 
-    elif weather== 3 or weather=='cloudy' or weather=='Cloudy':
+    elif weather== 3 :
         print("Cool")
         screen = [black]*360
         client.put_pixels(screen)
@@ -255,7 +257,7 @@ def user():
                         
             client.put_pixels(pixels)
             sleep(0.01) #speed of animation controlled through this
-    
+
 while True:
     options()
     client.put_pixels(led_colour) 
