@@ -120,24 +120,59 @@ def Ukraine():
         #yellow part of flag:
         if (number % 360 >= 180):
             led_colour[number] = yellow
+
 def Germany():
-    for i in range(len(led_colour)):
-        if i % 360 <= 120:
-            led_colour[i] = grey
-        if (i % 360 >= 120) and (i % 360 < 240):
-            led_colour[i] = red
-   
-        if (i % 360 >= 240) and (i % 360 < 360):
-            led_colour[i] = yellow
+    led = 0
+    sleep(1)
+    while led<40:
+        for rows in range(2):
+            led_colour[led + rows*60] = (100,100,100)
+            led_colour[59 -led + rows*60] = (100,100,100)
+        client.put_pixels(led_colour)
+        sleep(0.1)
+        led = led + 1#or reverse if you want
+
+    led = 0
+    while led>=0 and led <120: #scroll all rows at the same time
+        for rows in range(2,3):
+            led_colour[led + rows*60] = (255,0,0)
+            led_colour[119 -led + rows*60] = (255,0,0)
+            client.put_pixels(led_colour)
+            sleep(0.1)
+            led = led +1
+    led = 0
+    while led>=0 and led <120: 
+        for rows in range(5,6):
+            #led_colour[led + rows*60] = (255,255,0)
+            led_colour[59-led + rows*60] = (255,255,0)
+            client.put_pixels(led_colour)
+            sleep(0.1)
+            led = led+1 
+
+  
+def Armenia():
+    led = 0
+
+    while led < 60 :#scroll all rows at the same time
+        for rows in range (2): #first three rows left to right
+            led_colour[59-led + rows * 60] = (255,0,0)
+        for rows in range (2,4): #first three rows left to right
+            led_colour[led + rows * 60] = (0,0,255)
+        for rows in range (4,6): #first three rows left to right
+            led_colour[59-led + rows * 60] = (255,165,0)
+        client.put_pixels(led_colour)
+        sleep(0.1)
+        led = led + 1
+           
 
 def options(): 
     
     print('\nEnter the number of the flag you wish to be displayed:')
-    print('\n1. Palestine\n2. England\n3. Ireland\n4. Ukraine\n5. Germany')
+    print('\n1. Palestine\n2. England\n3. Ireland\n4. Ukraine\n5. Germany\n6. Armenia')
     x = int(input()) #the value from the user is an integer
-    while(x not in (1,2,3,4,5)):
+    while(x not in (1,2,3,4,5,6)):
         
-        print('\nPlease enter a value between 1-5!\n')
+        print('\nPlease enter a value between 1-6!\n')
         x = int(input()) 
     
     if x == 1:
@@ -152,6 +187,8 @@ def options():
         return Ukraine()
     elif x==5:
         return Germany()
+    elif x==6:
+        return Armenia()
 def user():
     print("Which country are you currently in")
     z=input()
