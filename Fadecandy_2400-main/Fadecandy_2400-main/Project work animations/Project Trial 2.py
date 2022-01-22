@@ -88,7 +88,7 @@ def Ireland():
     while led<20:
         for rows in range(6):
             led_colour[led + rows*60] = (0,255,0)
-        #leds[59 -led + rows*60] = (200,50,50) 
+            led_colour[59 -led + rows*60] = (255,160,50) 
         client.put_pixels(led_colour)
         sleep(0.1)
         led = led + 1 #or reverse if you want
@@ -102,9 +102,9 @@ def Ireland():
         sleep(0.1)
         led = led + 1 #or reverse if you want
     led=40
-    while led>=40 :
+    while led>40 :
         for rows in range(6):
-            led_colour[led-60 + rows*60] = (255,165,100)
+            led_colour[led + rows*60] = (255,165,100)
         #leds[59 -led + rows*60] = (200,50,50) 
         client.put_pixels(led_colour)
         sleep(0.1)
