@@ -274,7 +274,7 @@ def user():
             
                         
             client.put_pixels(pixels)
-            sleep(0.01) #speed of animation controlled through this
+            sleep(0.01) #speed control
 def MoreAnimations():
     print("Please Select which animation you would like to see")
     print("\n1 RGB Fading.\n2 Fading movement\n3.Police\n")
@@ -282,17 +282,17 @@ def MoreAnimations():
     if T==1:
         
         colors = []
-        for i in range(0, 255):
+        for i in range(0, 255):#fade blue
             r = i
             g = 0
             b = 255-i
             colors.append((r,g,b))
-        for i in range(0, 255):
+        for i in range(0, 255):#fade red
             g = i
             b = 0
             r = 255-i
             colors.append((r,g,b))
-        for i in range(0, 255):
+        for i in range(0, 255):#fade green
             b = i
             r = 0
             g = 255-i
@@ -302,6 +302,8 @@ def MoreAnimations():
                 pixels = [ x ] * numLEDs
                 client.put_pixels(pixels)
                 sleep(.01)
+                
+
     elif T==2:
         pixels = [ (0,0,0) ] * numLEDs
         while True:
@@ -329,7 +331,67 @@ def MoreAnimations():
                         new_pixels[i] = tuple(color)
             pixels = new_pixels
             client.put_pixels(pixels)
-            sleep(.2)
+            sleep(0.1)
+                    
+    elif T==3:
+        sleep_time = 1./10
+        cycles_per_pattern = 32
+        while True:
+            # red/blue alternate per strip
+            for x in range(cycles_per_pattern):
+                pixels = []
+                if x % 2 == 0:
+                    while(len(pixels) < numLEDs):
+                        pixels = pixels + ([red if x % 4 == 0 else blue]*16)
+                        pixels = pixels + ([blue if x % 4 == 0 else red]*16)
+                else:
+                    pixels = ([black]*numLEDs)
+                client.put_pixels(pixels)
+                sleep(sleep_time)
+
+            # white blinks
+            for x in range(cycles_per_pattern%2):
+                pixels = []
+                if x % 2 == 0:
+                    while(len(pixels) < numLEDs):
+                        pixels = pixels + ([white]*16)
+                        pixels = pixels + ([black]*16)
+                else:
+                    while(len(pixels) < numLEDs):
+                        pixels = pixels + ([black]*16)
+                        pixels = pixels + ([white]*16)
+                client.put_pixels(pixels)
+                sleep(sleep_time)
+
+            # red/blue everything
+            for x in range(cycles_per_pattern):
+                pixels = []
+                if int((float(x) % cycles_per_pattern)*8) %2 ==0:
+                    if x%2 == 0:
+                        pixels = ([red]*numLEDs)
+                    else:
+                        pixels = ([black]*numLEDs)
+                else:
+                    if x%2 == 0:
+                        pixels = ([blue]*numLEDs)
+                    else:
+                        pixels = ([black]*numLEDs)
+                client.put_pixels(pixels)
+                sleep(sleep_time)
+
+            # white blinks every other pixel
+            for x in range(cycles_per_pattern%2):
+                pixels = []
+                while(len(pixels) < numLEDs):
+                    if (len(pixels) / 64) % 2 == (x % 2):
+                        pixels.append(white)
+                        pixels.append(black)
+                    else:
+                        pixels.append(black)
+                        pixels.append(white)
+                client.put_pixels(pixels)
+                
+            break
 
     #THE POLICE ANIMATION WILL BE ADDED HERE, I STILL HAVENT DONE IT
 
@@ -347,5 +409,6 @@ while True:
     user()
     sleep(1)
     MoreAnimations()
-    #break #till now that is the end of the animation
+   
+    
 
