@@ -279,6 +279,10 @@ def MoreAnimations():
     print("Please Select which animation you would like to see")
     print("\n1 RGB Fading.\n2 Fading movement\n3.Police\n")
     T=int(input())
+    while(T not in (1,2,3)):
+        
+        print('\nPlease enter a value between 1-3!\n')
+        T= int(input()) 
     if T==1:
         
         colors = []
