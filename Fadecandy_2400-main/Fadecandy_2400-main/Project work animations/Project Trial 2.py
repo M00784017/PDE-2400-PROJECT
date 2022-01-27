@@ -207,6 +207,7 @@ def options():
         return Germany()
     elif x==6:
         return Armenia()
+#I was thinking of adding a flashing animation here so that the user can chose how many flashes does they want to see the flag do.
 def user():
     print("Which country are you currently in")
     z=input()
