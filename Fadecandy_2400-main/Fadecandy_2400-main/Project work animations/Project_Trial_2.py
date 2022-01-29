@@ -277,7 +277,7 @@ def user():
             client.put_pixels(pixels)
             sleep(0.01) #speed control
 def MoreAnimations():
-    print("Please Select which animation you would like to see")
+    print("This is the last set of animations. Please Select which animation you would like to see")
     print("\n1 RGB Fading.\n2 Fading movement\n3.Police\n")
     T=int(input())
     while(T not in (1,2,3)):

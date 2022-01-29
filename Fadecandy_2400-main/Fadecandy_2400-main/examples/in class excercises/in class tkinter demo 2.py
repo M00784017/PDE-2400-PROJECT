@@ -21,7 +21,7 @@ button = tk.Button(text = 'Submit', width = 30, height = 5,
 window.bind('<Return>', lambda event:save_and_print()) #if func need parameters
 
 frame = tk.Frame(master = window)
-label = tk.Label(master = window, text = 'Frame!', bg = 'black', fg = 'white')
+#label = tk.Label(master = window, text = 'Frame!', bg = 'black', fg = 'white')
 
 frame.columnconfigure(0, weight = 1)
 frame.columnconfigure(1, weight = 3)
