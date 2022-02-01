@@ -75,7 +75,7 @@ def Palestine():
         
 def England():
     
-    for number, colour in enumerate(led_colour):
+    for number in range(len(led_colour)):
         if number in G:
             led_colour[number] = white
         if number in D:
