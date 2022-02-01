@@ -188,11 +188,23 @@ def options():
     
     print('\nEnter the number of the flag you wish to be displayed:')
     print('\n1. Palestine\n2. England\n3. Ireland\n4. Ukraine\n5. Germany\n6. Armenia')
-    x = int(input()) #the value from the user is an integer
+    x = (input()) #the value from the user is an integer
     while(x not in (1,2,3,4,5,6)):
+        while True:
+            if x.isdigit() == True: # .isdigit() 
+                x = int(x)
+                if x>6 or x<1:
+            
+                    x = input("please input a number between 1 and 6. ")
+                    continue
+                else:
+            
+
+                    break # on correct value datatype: exit the loop
+            else:
+                x=input("Please enter an integer not a character(s)/letter(s):")
         
-        print('\nPlease enter a value between 1-6!\n')
-        x = int(input()) 
+
     
     if x == 1:
         return Palestine()
