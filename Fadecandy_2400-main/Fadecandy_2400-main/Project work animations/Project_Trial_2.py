@@ -150,13 +150,14 @@ def Germany():
         led = led + 1#or reverse if you want
 
     led = 0
-    while led>=0 and led <120: #scroll all rows at the same time
+    while led>=0 and led <60: #scroll all rows at the same time
         for rows in range(2,3):
             led_colour[led + rows*60] = (255,0,0)
             led_colour[119 -led + rows*60] = (255,0,0)
             client.put_pixels(led_colour)
             sleep(0.1)
             led = led +1
+            print(led)
     led = 0
     while led>=0 and led <120: 
         for rows in range(5,6):
@@ -280,6 +281,7 @@ def MoreAnimations():
     print("This is the last set of animations. Please Select which animation you would like to see")
     print("\n1 RGB Fading.\n2 Fading movement\n3.Police\n")
     T=int(input())
+    
     while(T not in (1,2,3)):
         
         print('\nPlease enter a value between 1-3!\n')
@@ -306,7 +308,7 @@ def MoreAnimations():
             for x in colors:
                 pixels = [ x ] * numLEDs
                 client.put_pixels(pixels)
-                sleep(.01)
+                sleep(0.001)
                 
 
     elif T==2:
@@ -323,7 +325,7 @@ def MoreAnimations():
                     b = b + pixels[j][2]*mul
                 new_pixels[i] = max(2, min(255, r)), max(2, min(255, g)), max(2, min(255, b))
 
-            for x in range(numLEDs*6%64):
+            for x in range(numLEDs*6 %64): #discard remainder
                 if(random.randint(0,12) == 0):
                     # Add a new drop of color...
                     drop_spot = random.randint(0, numLEDs)
@@ -339,7 +341,7 @@ def MoreAnimations():
             sleep(0.1)
                     
     elif T==3:
-        sleep_time = 1./10
+        sleep_time = 0.5
         cycles_per_pattern = 32
         while True:
             # red/blue alternate per strip
