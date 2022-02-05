@@ -206,7 +206,7 @@ def Brazil():
                      
         client.put_pixels(led_colour)
         sleep(0.01)
-
+    print("CAPITAL CITY OF Brazil IS : Brasília")
 def options(): 
     
     print('\nEnter the number of the flag you wish to be displayed:')
