@@ -183,17 +183,40 @@ def Armenia():
         sleep(0.1)
         led = led + 1
     print("CAPITAL CITY OF ARMENIA IS : YEREVAN")
+def Brazil():
+    led=0
+    
+    
+        
+    for i in range (len(led_colour)):
+                
+        if i >= 0 :
+            led_colour[i] = (0,180,0) #returns all white at first
+       
+        if i >= 140 and i <=160 or i >= 82 and i <= 98 or i>=25 and i<=35 or i>=200 and i<=220 or i>=262 and i<=278 or i>=325 and i<=335  :
+            led_colour[i] = (255,200,0) 
+            
+        if i>= 89 and i<=92 or  i>=148 and i<=153 or i>=208 and i<=213 or i>=269 and i<=272:
+            led_colour[i]=(0,0,255)
+            
+            client.put_pixels(led_colour)
+                
+                
+                
+                     
+        client.put_pixels(led_colour)
+        sleep(0.01)
 
 def options(): 
     
     print('\nEnter the number of the flag you wish to be displayed:')
-    print('\n1. Palestine\n2. England\n3. Ireland\n4. Ukraine\n5. Germany\n6. Armenia')
+    print('\n1. Palestine\n2. England\n3. Ireland\n4. Ukraine\n5. Germany\n6. Armenia\n7. Brazil')
     x = (input()) #the value from the user is an integer
-    while(x not in (1,2,3,4,5,6)):
+    while(x not in (1,2,3,4,5,6,7)):
         while True:
             if x.isdigit() == True: # .isdigit() 
                 x = int(x)
-                if x>6 or x<1:
+                if x>7 or x<1:
             
                     x = input("please input a number between 1 and 6. ")
                     continue
@@ -220,6 +243,8 @@ def options():
         return Germany()
     elif x==6:
         return Armenia()
+    elif x==7:
+        return Brazil()
 #I was thinking of adding a flashing animation here so that the user can chose how many flashes does they want to see the flag do.
 def user():
     print("Which country are you currently in")
