@@ -13,18 +13,7 @@ T=range(126,180)
 I = range(245,300)
 N=range(302,330)
 E=range(304,360)
-G=range(0,27)
-D=range(33,87)
-D1=range(93,120)
-D2=range(240,267)
-D3=range(273,327)
-D4=range(333,360)
-D5=range(27,33)
-D6=range(87,93)
-D7=range(267,273)
-D8=range(327,333)
-E1=range(208,212)
-E2=range(148,152)
+
 #defining colour numbers in rgb
 grey=(100,100,100)  #dark grey color number 
 black = (0,0,0)
@@ -40,20 +29,15 @@ s = 1 #saturation max 1.0 so i don't have to redefine calculations as floating p
 v = 0.8 #value max 
 pixels = [] #start empty
 numLEDs=360
- #FOR MOREANIMATIONS FUNCTION
-color_run = [(-2, .05), (-2, .15), (-1, .25), (0, .40), (1, .1), (2, .02)]
-drop_blur = [(0, .25), (1, .5), (2, .95), (3, .5), (4, .25)]
+#FOR MOREANIMATIONS FUNCTION
+client = opc.Client('localhost:7890')
+value=[(-2, 0.05), (-2, 0.15), (-1, 0.25), (0, 0.40), (1, 0.1), (2, 0.01)] #the higher the values, the more the screen becomes whiter
+speed = value
+fade = [(0, 0.75), (1, 0.5), (2, 0.25), ]# incrementing by 1, -0.25
 
-# Add horizontal siblings to blur
-scale = .8
-total = sum([mul for (_, mul) in color_run])
-spare = total*(1-scale)
-middle = [(off, mul*scale) for (off, mul) in color_run]
-left   = [(off-64, mul*spare/2) for (off, mul) in color_run]
-right  = [(off+64, mul*spare/2) for (off, mul) in color_run]
-color_run = left + middle + right
-total = sum([mul for (_, mul) in color_run])
-print("Run total: %f" % total)
+
+new_leds=numLEDs*6%64
+
 def Palestine():
     for i in range(len(led_colour)):
         if i in P:
@@ -73,31 +57,22 @@ def Palestine():
             led_colour[i] = green
     print("CAPITAL CITY OF PALESTINE IS : ALQUDS")
         
-def England():
-    
-    for number in range(len(led_colour)):
-        if number in G:
-            led_colour[number] = white
-        if number in D:
-            led_colour[number] = white
-        if number in D1:
-            led_colour[number] = white
-        if number in D2:
-            led_colour[number] = white
-        if number in D3:
-            led_colour[number] = white
-        if number in D4:
-            led_colour[number] = white
-        if number in D5:
-            led_colour[number] = red
-        if number in D6:
-            led_colour[number] = red
-        if number in D7:
-            led_colour[number] = red
-        if number in D8:
-            led_colour[number] = red   
-        if (number % 360 >= 120) and (number % 360 < 240):
-            led_colour[number] = red
+def England(): #I have made this to minimize use of code, I know its not ideal, but hopefully I will do something better   
+    led=0
+    for i in range (len(led_colour)):
+            
+        if i >= 20 and i <=40 or i>=80 and i<=100 or i>=140 and i<=160 or i>= 260 and i<=280 or i>=320 and i<=340 :
+            led_colour[i] = (255,255,255) #returns all white at first
+       
+        if i >= 140 and i <=160 or i >= 200 and i <= 220 or i>=28 and i<=32 or i>=88 and i<=92 or i>=148 and i<=152 or i>=208 and i<=212 or i>=268 and i<=272 or i>=328 and i<=332  :
+            led_colour[i] = (255,0,0) 
+        
+        
+            
+            client.put_pixels(led_colour)
+                             
+        client.put_pixels(led_colour)
+        sleep(0.01)
     print("CAPITAL CITY OF ENGLAND IS : LONDON")
 def Ireland():
     led=0
@@ -349,34 +324,40 @@ def MoreAnimations():
                 
 
     elif T==2:
+        
         pixels = [ (0,0,0) ] * numLEDs
         while True:
-            # Let the colors run
+            
             new_pixels = list(pixels)
+            
             for i in range(numLEDs):
-                r, g, b = 0, 0, 0
-                for offset, mul in color_run:
-                    j = (numLEDs+offset+i) % numLEDs
-                    r = r + pixels[j][0]*mul
-                    g = g + pixels[j][1]*mul
-                    b = b + pixels[j][2]*mul
+                pixels.append(i)
+                r, g, b = (0, 0, 0)
+                
+                for gradiant, deg in speed:
+                    
+                    j = (numLEDs+gradiant+i) % numLEDs
+                    fade_amount= pixels[j][1]
+                    r = r + fade_amount*deg
+                    g = g + fade_amount*deg
+                    b = b + fade_amount*deg
                 new_pixels[i] = max(2, min(255, r)), max(2, min(255, g)), max(2, min(255, b))
-
-            for x in range(numLEDs*6 %64): #discard remainder
-                if(random.randint(0,12) == 0):
-                    # Add a new drop of color...
-                    drop_spot = random.randint(0, numLEDs)
-                    drop_color = (random.randint(0, 256), random.randint(0, 256), random.randint(0, 256))
-                    for offset, mul in drop_blur:
-                        i = (offset + drop_spot) % numLEDs
+                fade_amount=fade_amount +1
+            for x in range(360):
+               if (random.randint(0,6) == 0) is True and speed==value:
+                    
+                    movement = random.randint(0, 360)
+                    drop = (random.randint(0, 256), random.randint(0, 256), random.randint(0, 256))
+                    for gradiant, deg in fade:
+                        i = (gradiant + movement) % 360 #360 to cover all leds
                         color = []
                         for c in 0, 1, 2:
-                            color.append(drop_color[c]*mul + new_pixels[i][c]*(1-mul))
+                            color.append(drop[c]*deg + new_pixels[i][c]*(1-deg))
+                            
                         new_pixels[i] = tuple(color)
             pixels = new_pixels
             client.put_pixels(pixels)
-            sleep(0.1)
-                    
+            sleep(0.4) #can be adjusted to make it faster or slower
     elif T==3:
         sleep_time = 0.5
         cycles_per_pattern = 32
