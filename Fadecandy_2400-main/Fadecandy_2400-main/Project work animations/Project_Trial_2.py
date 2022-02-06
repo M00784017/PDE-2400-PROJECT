@@ -2,7 +2,8 @@ import opc #imports the simulator
 from time import sleep #we just need sleep from time
 import colorsys
 import random
-led_colour=[(0,0,0)]*360 
+led_colour=[(0,0,0)]*360
+led_colour1=[(0,0,0)]*20
 # The numbers in each letter represent a pixel in the simulator 60*6
 P = [0,1,2,3,60,61,62,63,64,120,121,122,123,124,125,180,181,182,183,184,185,240,241,242,243,244,300,301,302,303] 
 A = range(4,60) 
@@ -82,13 +83,13 @@ def Ireland():
             led_colour[59 -led + rows*60] = (255,160,50) 
         client.put_pixels(led_colour)
         sleep(0.1)
-        led = led + 1 #or reverse if you want
+        led = led + 1 
         
     led=20
     while led>=20 and led<40 :
         for rows in range(6):
             led_colour[59-led + rows*60] = (255,255,255)
-        #leds[59 -led + rows*60] = (200,50,50) 
+         
         client.put_pixels(led_colour)
         sleep(0.1)
         led = led + 1 #or reverse if you want
@@ -96,21 +97,31 @@ def Ireland():
     while led>40 :
         for rows in range(6):
             led_colour[led + rows*60] = (255,165,100)
-        #leds[59 -led + rows*60] = (200,50,50) 
+         
         client.put_pixels(led_colour)
         sleep(0.1)
-        led = led + 1 #or reverse if you want
+        led = led + 1 
     print("CAPITAL CITY OF IRELAND IS : DUBLIN")
 def Ukraine():
-    for number, colour in enumerate(led_colour):#iterate through 360 LEDs (with an index (count))
-        #black part of flag:
-        if number % 360 <= 180:
-            led_colour[number] = blue
+    led = 0
+    #sleep(1)
+    while led<120:
+        for rows in range(1,4):
+            led_colour[led + rows*60] = (0,0,255)
+            led_colour[59 -led + rows*60] = (0,0,255)
+        client.put_pixels(led_colour)
+        sleep(0.1)
+        led = led + 1
 
-        
-        #yellow part of flag:
-        if (number % 360 >= 180):
-            led_colour[number] = yellow
+    led = 0
+    while led>=0 and led <120: 
+        for rows in range(4,5):
+            led_colour[led + rows*60] = (255,255,0)
+            led_colour[59-led + rows*60] = (255,255,0)
+            client.put_pixels(led_colour)
+            sleep(0.07)
+            led = led+1
+
     print("CAPITAL CITY OF UKRAIN IS : KIEV")
 
 def Germany():
@@ -166,7 +177,7 @@ def Brazil():
     for i in range (len(led_colour)):
                 
         if i >= 0 :
-            led_colour[i] = (0,180,0) #returns all white at first
+            led_colour[i] = (0,180,0) #returns all green at first
        
         if i >= 140 and i <=160 or i >= 82 and i <= 98 or i>=25 and i<=35 or i>=200 and i<=220 or i>=262 and i<=278 or i>=325 and i<=335  :
             led_colour[i] = (255,200,0) 
@@ -220,7 +231,7 @@ def options():
         return Armenia()
     elif x==7:
         return Brazil()
-#I was thinking of adding a flashing animation here so that the user can chose how many flashes does they want to see the flag do.
+
 def user():
     print("Which country are you currently in")
     z=input()
@@ -359,66 +370,46 @@ def MoreAnimations():
             client.put_pixels(pixels)
             sleep(0.4) #can be adjusted to make it faster or slower
     elif T==3:
-        sleep_time = 0.5
-        cycles_per_pattern = 32
         while True:
-            # red/blue alternate per strip
-            for x in range(cycles_per_pattern):
+    
+            for x in range (len(led_colour1)):
                 pixels = []
                 if x % 2 == 0:
-                    while(len(pixels) < numLEDs):
-                        pixels = pixels + ([red if x % 4 == 0 else blue]*16)
-                        pixels = pixels + ([blue if x % 4 == 0 else red]*16)
-                else:
-                    pixels = ([black]*numLEDs)
-                client.put_pixels(pixels)
-                sleep(sleep_time)
+                    while(len(pixels) <= 360):
+                        pixels = pixels + ([red if x % 3 == 0 else blue]*16)
+                        pixels = pixels + ([blue if x % 3 == 0 else red]*16)
 
-            # white blinks
-            for x in range(cycles_per_pattern%2):
-                pixels = []
-                if x % 2 == 0:
-                    while(len(pixels) < numLEDs):
-                        pixels = pixels + ([white]*16)
-                        pixels = pixels + ([black]*16)
                 else:
-                    while(len(pixels) < numLEDs):
-                        pixels = pixels + ([black]*16)
-                        pixels = pixels + ([white]*16)
+                    pixels = [green]*360
                 client.put_pixels(pixels)
-                sleep(sleep_time)
+                sleep(0.1)
 
-            # red/blue everything
-            for x in range(cycles_per_pattern):
+
+
+
+            for x in range (len(led_colour1)):
                 pixels = []
-                if int((float(x) % cycles_per_pattern)*8) %2 ==0:
+                if int((x % (len(led_colour1)))*8) %2 ==0:
                     if x%2 == 0:
-                        pixels = ([red]*numLEDs)
-                    else:
-                        pixels = ([black]*numLEDs)
+                        pixels = [blue]*360
+                    elif x%2==1:
+                        pixels = [red]*360        #blinks blue and red after each other
+                        
+                        
+               
+                client.put_pixels(pixels)
+                sleep(0.1)
+
+            for cycles in range(len(led_colour1)):
+                cycles = 0
+                if cycles==10:
+                    break
                 else:
-                    if x%2 == 0:
-                        pixels = ([blue]*numLEDs)
-                    else:
-                        pixels = ([black]*numLEDs)
-                client.put_pixels(pixels)
-                sleep(sleep_time)
+                    continue
+                        
+                break
 
-            # white blinks every other pixel
-            for x in range(cycles_per_pattern%2):
-                pixels = []
-                while(len(pixels) < numLEDs):
-                    if (len(pixels) / 64) % 2 == (x % 2):
-                        pixels.append(white)
-                        pixels.append(black)
-                    else:
-                        pixels.append(black)
-                        pixels.append(white)
-                client.put_pixels(pixels)
-                
-            break
 
-    #THE POLICE ANIMATION WILL BE ADDED HERE, I STILL HAVENT DONE IT
 
 
         
