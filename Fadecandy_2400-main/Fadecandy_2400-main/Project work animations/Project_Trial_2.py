@@ -310,29 +310,20 @@ def MoreAnimations():
         print('\nPlease enter a value between 1-3!\n')
         T= int(input()) 
     if T==1:
+        colors=[]
+        for i in range(0,255):
+            rgb = colorsys.hsv_to_rgb(i/360.0, s, v) #colorsys returns floats between 0 and 1
+            r = rgb[0] 
+            g = rgb[1]
+            b = rgb[2]
+            colors.append((r,g,b))
+            rgb = (r*255, g*255, b*255) #creates a new tuple
+            client.put_pixels([rgb] *numLEDs) #put the pixels in the simulator
+
+            sleep(0.1) 
+
         
-        colors = []
-        for i in range(0, 255):#fade blue
-            r = i
-            g = 0
-            b = 255-i
-            colors.append((r,g,b))
-        for i in range(0, 255):#fade red
-            g = i
-            b = 0
-            r = 255-i
-            colors.append((r,g,b))
-        for i in range(0, 255):#fade green
-            b = i
-            r = 0
-            g = 255-i
-            colors.append((r,g,b))
-        while True:
-            for x in colors:
-                pixels = [ x ] * numLEDs
-                client.put_pixels(pixels)
-                sleep(0.001)
-                
+        
 
     elif T==2:
         
