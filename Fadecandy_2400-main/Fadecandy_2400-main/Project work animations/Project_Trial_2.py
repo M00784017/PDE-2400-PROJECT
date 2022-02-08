@@ -59,9 +59,8 @@ def Palestine():
     print("CAPITAL CITY OF PALESTINE IS : ALQUDS")
         
 def England(): #I have made this to minimize use of code, I know its not ideal, but hopefully I will do something better   
-    led=0
-    for i in range (len(led_colour)):
-            
+    led=1
+    for i in range (len(led_colour)):    
         if i >= 20 and i <=40 or i>=80 and i<=100 or i>=140 and i<=160 or i>= 260 and i<=280 or i>=320 and i<=340 :
             led_colour[i] = (255,255,255) #returns all white at first
        
