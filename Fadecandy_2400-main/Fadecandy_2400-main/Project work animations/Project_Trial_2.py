@@ -43,32 +43,33 @@ def Palestine():
     for i in range(len(led_colour)):
         if i in P:
             led_colour[i] = red
-            client.put_pixels(led_colour)
+            
             sleep(0.05)
         if i in A:
             led_colour[i] = grey #although the palestine flag is black instead of grey here, I put dark grey because black will not appear.
-            client.put_pixels(led_colour)
+            
             sleep(0.05)
         if i in L:
             led_colour[i] = grey
-            client.put_pixels(led_colour)
+            
             sleep(0.05)
         if i in S:
             led_colour[i] = white
-            client.put_pixels(led_colour)
+           
             sleep(0.05)
         if i in T:
             led_colour[i] = white
-            client.put_pixels(led_colour)
+           
             sleep(0.05)
         if i in I:
             led_colour[i] = green
-            client.put_pixels(led_colour)
+            
             sleep(0.05)
         if i in E:
             led_colour[i] = green
-            client.put_pixels(led_colour)
+            
             sleep(0.05)
+        client.put_pixels(led_colour)
     print("CAPITAL CITY OF PALESTINE IS : ALQUDS")
         
 def England(): #I have made this to minimize use of code, I know its not ideal, but hopefully I will do something better   
