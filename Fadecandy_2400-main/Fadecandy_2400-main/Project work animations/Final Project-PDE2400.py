@@ -1,11 +1,11 @@
 #!C:\Users\obliq\AppData\Local\Programs\Python\Python310\python.exe
 import opc #imports the simulator
 from time import sleep #we just need sleep from time
-import colorsys
-import random
-import numpy
-import os
-import sys
+import colorsys#used for rainbow animation
+import random#to assign random numbers and in shuffling
+import numpy#to shift
+import os#used for exit 
+import sys#used for exit
 
 led_colour=[(0,0,0)]*360
 led_colour1=[(0,0,0)]*20
@@ -15,29 +15,28 @@ A = range(4,60)
 L = range(65,120)
 S = range(186,240)
 T=range(126,180)
- #I = range(171,239)
 I = range(245,300)
 N=range(302,330)
 E=range(304,360)
 
 #defining colour numbers in rgb
-grey=(100,100,100)  #dark grey color number 
-black = (0,0,0)
-white = (255,255,255)
-red = (255,0,0)
-green = (0,255,0)
-orange=(255,165,0)
-yellow=(255,255,0)
-blue=(0,0,255)
-light_blue=(173, 216, 230)
+grey=(100,100,100)  #dark grey color number in rgb
+black = (0,0,0)#black color number in rgb
+white = (255,255,255)#white color number in rgb
+red = (255,0,0)#red color number in rgb
+green = (0,255,0)#green color number in rgb
+orange=(255,165,0)#orange color number in rgb
+yellow=(255,255,0)#yellow color number in rgb
+blue=(0,0,255)#blue color number in rgb
+light_blue=(173, 216, 230)#light_blue color number in rgb
 client = opc.Client('localhost:7890') #connects to simulator
 s = 1 #saturation max 1.0 so i don't have to redefine calculations as floating point later on 
-v = 0.8 #value max 
+v = 0.9 #value max 
 pixels = [] #start empty
-numLEDs=360
+numLEDs=360#number of leds available in the simulator
 #FOR MOREANIMATIONS FUNCTION
 client = opc.Client('localhost:7890')
-value=[(-2, 0.05), (-2, 0.15), (-1, 0.25), (0, 0.40), (1, 0.1), (2, 0.01)] #the higher the values, the more the screen becomes whiter
+value=[(-2, 0.05), (-2, 0.15), (-1, 0.2), (0, 0.40), (1, 0.1), (2, 0.01)] #the higher the values, the more the screen becomes whiter
 speed = value
 fade = [(0, 0.75), (1, 0.5), (2, 0.25), ]# incrementing by 1, -0.25
 
@@ -219,8 +218,8 @@ def options():
                 print('') #if not from the list:
              #return to top of while and ask again
             else: #if correct value:
-                print(f'your value is {x} and its type is {type(x)}') #print a response, optional
-                break # exit while loop. Value remains.
+                print(f'your value is {x} and its type is {type(x)}')#prints the data type if its a number
+                break # exits while loop while keeeping value.
         except ValueError:
             if x == 'one':
                  x = 1
@@ -285,8 +284,8 @@ def user():
                 print('') #if not from the list:
                  #return to top of while and ask again
             else: #if correct value:
-                print(f'your value is {z} and its type is {type(z)}') #print a response, optional
-                break # exit while loop. Value remains.
+                print(f'your value is {z} and its type is {type(z)}') #prints the data type if its a number
+                break # exits while loop while keeeping value.
         except ValueError:
             if z == 'one':
                  z = 1
@@ -303,25 +302,19 @@ def user():
             elif z == 'five':
                   z = 5
                   break
-            #else:
-                 # print('valid number, please') #prompt user again,
-                  #continue #return to top of while loop.
-    #continue with code based on value such as:
- 
-    #print("Is it \n1 Rainy.\n2 Sunny\n3.Cloudy\n4.Rainbow\n")
-    #weather=(input())#only integers at the moment
+
     if z== 1 :
         print("As Usual")
         screen = [black]*360
         client.put_pixels(screen)
         
-        for i in range(360):
+        for i in range(360):#for all leds within the range
             
-            if i%3 ==0:
+            if i%3 ==0:#every 3 pixels
                 
-                screen[i] = blue
+                screen[i] = blue#add color blue to the leds
                 sleep(0.01)
-                client.put_pixels(screen)
+                client.put_pixels(screen)#put leds in simulator
                 
     elif z== 2 :
         print("Nice")
@@ -330,9 +323,9 @@ def user():
         
         for i in range(360):
             
-            if i%3 ==0:
+            if i%3 ==0:#every 3 pixels
                 
-                screen[i] = yellow
+                screen[i] = yellow#add color yellow to the leds
                 sleep(0.01)
                 client.put_pixels(screen)
 
@@ -377,15 +370,15 @@ def MoreAnimations():
     print("This is the last set of animations. Please Select which animation you would like to see")
     print("\n1 RGB Fading.\n2 Fading movement\n3.Police\n4.Exit")
     while True:
-            T = input('Please enter a number between 1 and 4')
+            T = input('Please enter a number between 1 and 4: ')
             try:
                 T = int(T) #exception catch - if value isn't integer, go to except:
                 if T <1 or T > 4: #value validation:
                     print('') #if not from the list:
                  #return to top of while and ask again
                 else: #if correct value:
-                    print(f'your value is {T} and its type is {type(T)}') #print a response, optional
-                    break # exit while loop. Value remains.
+                    print(f'your value is {T} and its type is {type(T)}') #prints the data type if its a number
+                    break # exits while loop while keeeping value.
             except ValueError:
                 if T == 'one':
                      T = 1
@@ -424,10 +417,10 @@ def MoreAnimations():
             new_pixels = list(pixels)
             
             for i in range(numLEDs):
-                pixels.append(i)
-                r, g, b = (0, 0, 0)
+                pixels.append(i)#moves pixels to end of list
+                r, g, b = (0, 0, 0)#assign pixels
                 
-                for gradiant, deg in speed:
+                for gradiant, deg in speed: #speed=value
                     
                     j = (numLEDs+gradiant+i) % numLEDs
                     fade_amount= pixels[j][1]
@@ -450,7 +443,7 @@ def MoreAnimations():
                         new_pixels[i] = tuple(color)
             pixels = new_pixels
             client.put_pixels(pixels)
-            sleep(0.4) #can be adjusted to make it faster or slower
+            sleep(0.2) #can be adjusted to make it faster or slower
     elif T==3:
         while True:
     
