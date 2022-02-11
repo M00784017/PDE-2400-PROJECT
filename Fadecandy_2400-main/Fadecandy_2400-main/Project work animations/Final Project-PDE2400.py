@@ -208,11 +208,11 @@ def Brazil():
     print("CAPITAL CITY OF Brazil IS : Brasília")
 def options(): 
     
-    print('\nEnter the number of the flag you wish to be displayed:')
+    print('\nEnter the number of the flag you wish to be displayed, eg:for Germany Flag, enter "two" or "2" all lower case. ')
     print('\n1. Palestine\n2. England\n3. Ireland\n4. Ukraine\n5. Germany\n6. Armenia\n7. Brazil\n8. exit')
    # x = (input()) #the value from the user is an integer
     while True:
-        x= input('Please enter a number between 1 and 8')
+        x= input('Please enter a number between 1 and 8: ')
         try:
             x = int(x) #exception catch - if value isn't integer, go to except:
             if x <1 or x > 8: #value validation:
@@ -278,7 +278,7 @@ def user():
     print("Is it \n1 Rainy.\n2 Sunny\n3.Cloudy\n4.Rainbow\n5.Exit\n")
     
     while True:
-        z = input('Please enter a number between 1 and 5')
+        z = input('Please enter a number between 1 and 5: ')
         try:
             z = int(z) #exception catch - if value isn't integer, go to except:
             if z <1 or z > 5: #value validation:
@@ -348,7 +348,7 @@ def user():
 	                
 	                screen[i] = light_blue
 	                sleep(0.05)
-	        #numpy.roll(screen, 1) #move every element 2 spaces forward
+	        numpy.roll(screen, 2) #move every element 2 spaces forward
 	        client.put_pixels(screen)
 
     elif z==4:
