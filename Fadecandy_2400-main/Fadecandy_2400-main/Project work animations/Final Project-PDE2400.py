@@ -18,7 +18,7 @@ T=range(126,180)
 I = range(245,300)
 N=range(302,330)
 E=range(304,360)
-
+led_colour2=[(0,0,0)]*360
 #defining colour numbers in rgb
 grey=(100,100,100)  #dark grey color number in rgb
 black = (0,0,0)#black color number in rgb
@@ -324,10 +324,13 @@ def user():
         for i in range(360):
             
             if i%3 ==0:#every 3 pixels
+                screen[i] = yellow
+                led_colour2[179-i] = yellow  #start from the middle of the simulator
+                led_colour2[i] = yellow #add yellow to indv. pixs
+                sleep(0.02)#for speed
+                client.put_pixels(led_colour2)
                 
-                screen[i] = yellow#add color yellow to the leds
-                sleep(0.01)
-                client.put_pixels(screen)
+                
 
     elif z== 3 :
         print("Cool")
