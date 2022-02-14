@@ -208,13 +208,13 @@ def Brazil():
 def options(): 
     
     print('\nEnter the number of the flag you wish to be displayed, eg:for Germany Flag, enter "two" or "2" all lower case. ')
-    print('\n1. Palestine\n2. England\n3. Ireland\n4. Ukraine\n5. Germany\n6. Armenia\n7. Brazil\n8. exit')
+    print('\n1. Palestine\n2. England\n3. Ireland\n4. Ukraine\n5. Germany\n6. Armenia\n7. Brazil\n8. exit\n9. Restart')
    # x = (input()) #the value from the user is an integer
     while True:
-        x= input('Please enter a number between 1 and 8: ')
+        x= input('Please enter a number between 1 and 9: ')
         try:
             x = int(x) #exception catch - if value isn't integer, go to except:
-            if x <1 or x > 8: #value validation:
+            if x <1 or x > 9: #value validation:
                 print('') #if not from the list:
              #return to top of while and ask again
             else: #if correct value:
@@ -245,6 +245,11 @@ def options():
             elif x == 'eight':
                   x = 8
                   break
+            elif x=='nine':
+                x=9
+                break
+                
+            
         
         
 
@@ -268,19 +273,24 @@ def options():
     elif x==8:
         #os.execv(sys.argv[0], sys.argv) # does not work, should restart
         sys.exit() #closes script
+    elif x==9:
+        #os.execv(sys.executable, ['python'] + sys.argv)
+        print(" Restarted Sucessfully ")
+        options()#resets the program
+        
         
 def user():
     print("Which country are you currently in")
     z=(input())
     print("What is the weather in", z)
     
-    print("Is it \n1 Rainy.\n2 Sunny\n3.Cloudy\n4.Rainbow\n5.Exit\n")
+    print("Is it \n1 Rainy.\n2 Sunny\n3.Cloudy\n4.Rainbow\n5.Exit\n6.Restart\n")
     
     while True:
-        z = input('Please enter a number between 1 and 5: ')
+        z = input('Please enter a number between 1 and 6: ')
         try:
             z = int(z) #exception catch - if value isn't integer, go to except:
-            if z <1 or z > 5: #value validation:
+            if z <1 or z > 6: #value validation:
                 print('') #if not from the list:
                  #return to top of while and ask again
             else: #if correct value:
@@ -302,6 +312,9 @@ def user():
             elif z == 'five':
                   z = 5
                   break
+            elif z=='six':
+                z = 6
+                break
 
     if z== 1 :
         print("As Usual")
@@ -369,14 +382,17 @@ def user():
             sleep(0.01) #speed control
     elif z==5:
         sys.exit()
+    elif z==6:
+        print(" Restarted Sucessfully ")
+        options()#resets the program
 def MoreAnimations():
     print("This is the last set of animations. Please Select which animation you would like to see")
-    print("\n1 RGB Fading.\n2 Fading movement\n3.Police\n4.Exit")
+    print("\n1 RGB Fading.\n2 Fading movement\n3.Police\n4.Exit\n5.Restart")
     while True:
-            T = input('Please enter a number between 1 and 4: ')
+            T = input('Please enter a number between 1 and 5: ')
             try:
                 T = int(T) #exception catch - if value isn't integer, go to except:
-                if T <1 or T > 4: #value validation:
+                if T <1 or T > 5: #value validation:
                     print('') #if not from the list:
                  #return to top of while and ask again
                 else: #if correct value:
@@ -395,6 +411,9 @@ def MoreAnimations():
                 elif T == 'four':
                       T = 4
                       break
+                elif T=='five':
+                    T=5
+                    break
 
     if T==1:
         colors=[]
@@ -490,6 +509,9 @@ def MoreAnimations():
     elif T==4:
         
         sys.exit() #closes script
+    elif T==5:
+        print(" Restarted Sucessfully ")
+        options()
 
 
         
