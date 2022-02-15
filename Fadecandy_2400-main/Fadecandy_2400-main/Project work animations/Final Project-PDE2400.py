@@ -67,7 +67,10 @@ def Palestine():
         if i in E:
             led_colour[i] = green
             sleep(0.01)
+        
         client.put_pixels(led_colour)
+
+            
     print("CAPITAL CITY OF PALESTINE IS : ALQUDS")
         
 def England(): #I have made this to minimize use of code, I know its not ideal, but hopefully I will do something better   
@@ -113,7 +116,7 @@ def Ireland():
          
         client.put_pixels(led_colour)
         sleep(0.1)
-        led = led + 1 
+        led = led + 1
     print("CAPITAL CITY OF IRELAND IS : DUBLIN")
 def Ukraine():
     led = 0
@@ -339,8 +342,8 @@ def user():
             if i%2 ==0:#every 2 pixels
                 
                 #screen[i] = blue#add color blue to the leds
-                led_colour2[359-i] = blue  #start from the middle of the simulator
-                led_colour2[i] = blue #add yellow to indv. pixs
+                led_colour2[359-i] = blue  #start from the begining and end of the simulator
+                led_colour2[i] = blue #add blue to indv. pixs
                 sleep(0.02)#for speed
                 client.put_pixels(led_colour2)#put leds in simulator
 
