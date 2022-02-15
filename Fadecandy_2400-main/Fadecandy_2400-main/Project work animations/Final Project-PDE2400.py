@@ -44,6 +44,7 @@ fade = [(0, 0.75), (1, 0.5), (2, 0.25), ]# incrementing by 1, -0.25
 new_leds=numLEDs*6%64
 
 def Palestine():
+    
     for i in range(len(led_colour)):
         if i in P:
             led_colour[i] = red
@@ -90,7 +91,7 @@ def Ireland():
     led=0
     while led<20:
         for rows in range(6):
-            led_colour[led + rows*60] = (0,255,0)
+            led_colour[led + rows*60] = (0,255,0)#sends green to the first 20 leds in each row
             led_colour[59 -led + rows*60] = (255,160,50) 
         client.put_pixels(led_colour)
         sleep(0.1)
@@ -99,8 +100,8 @@ def Ireland():
     led=20
     while led>=20 and led<30 :
         for rows in range(6):
-        	led_colour[led + rows*60] = (255,255,255)
-        	led_colour[59-led + rows*60] = (255,255,255)
+        	led_colour[led + rows*60] = (255,255,255)#when the animation reaches the middle 20 flags, send white in the middle
+        	led_colour[59-led + rows*60] = (255,255,255)#from both directions
          
         client.put_pixels(led_colour)
         sleep(0.1)
@@ -119,7 +120,7 @@ def Ukraine():
     #sleep(1)
     while led<120:
         for rows in range(1,4):
-            led_colour[led + rows*60] = (0,0,255)
+            led_colour[led + rows*60] = (0,0,255)#animate blue for the rows between 1 and 4
             led_colour[59 -led + rows*60] = (0,0,255)
         client.put_pixels(led_colour)
         sleep(0.1)
@@ -128,7 +129,7 @@ def Ukraine():
     led = 0
     while led>=0 and led <120: 
         for rows in range(4,5):
-            led_colour[led + rows*60] = (255,255,0)
+            led_colour[led + rows*60] = (255,255,0)#this sends out yellow colour when blue is finished, to complete the flag
             led_colour[59-led + rows*60] = (255,255,0)
             client.put_pixels(led_colour)
             sleep(0.07)
@@ -207,7 +208,7 @@ def Brazil():
     print("CAPITAL CITY OF Brazil IS : Brasília")
 def options(): 
     
-    print('\nEnter the number of the flag you wish to be displayed, eg:for Germany Flag, enter "two" or "2" all lower case. ')
+    print('\nEnter the number of the flag you wish to be displayed, eg:for Germany Flag, enter "five" or "5" all lower case. ')
     print('\n1. Palestine\n2. England\n3. Ireland\n4. Ukraine\n5. Germany\n6. Armenia\n7. Brazil\n8. exit\n9. Restart')
    # x = (input()) #the value from the user is an integer
     while True:
@@ -276,13 +277,25 @@ def options():
     elif x==9:
         #os.execv(sys.executable, ['python'] + sys.argv)
         print(" Restarted Sucessfully ")
+        
         options()#resets the program
         
         
 def user():
-    print("Which country are you currently in")
+    print("Which country are you currently in?")
     z=(input())
-    print("What is the weather in", z)
+    
+    if z.isdigit()==False:
+        print("What is the weather in", z)
+        
+        
+    else:
+        print("Please enter a valid word")
+        return user()
+        
+    
+        
+   
     
     print("Is it \n1 Rainy.\n2 Sunny\n3.Cloudy\n4.Rainbow\n5.Exit\n6.Restart\n")
     
@@ -385,6 +398,7 @@ def user():
     elif z==6:
         print(" Restarted Sucessfully ")
         options()#resets the program
+        user()
 def MoreAnimations():
     print("This is the last set of animations. Please Select which animation you would like to see")
     print("\n1 RGB Fading.\n2 Fading movement\n3.Police\n4.Exit\n5.Restart")
@@ -512,6 +526,8 @@ def MoreAnimations():
     elif T==5:
         print(" Restarted Sucessfully ")
         options()
+        user()
+        MoreAnimations()
 
 
         
