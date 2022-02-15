@@ -56,13 +56,13 @@ def Palestine():
             led_colour[i] = grey
             sleep(0.01)
         if i in S:
-            led_colour[i] = white
+            led_colour[i] = white#adds white colour leds in range
             sleep(0.01)
         if i in T:
             led_colour[i] = white
             sleep(0.01)
         if i in I:
-            led_colour[i] = green
+            led_colour[i] = green#adds green colour leds in range
             sleep(0.01)
         if i in E:
             led_colour[i] = green
@@ -132,10 +132,10 @@ def Ukraine():
             led_colour[led + rows*60] = (255,255,0)#this sends out yellow colour when blue is finished, to complete the flag
             led_colour[59-led + rows*60] = (255,255,0)
             client.put_pixels(led_colour)
-            sleep(0.07)
+            sleep(0.03)
             led = led+1
 
-    print("CAPITAL CITY OF UKRAIN IS : KIEV")
+    print("CAPITAL CITY OF UKRAINE IS : KIEV")
 
 def Germany():
     led = 0
@@ -152,7 +152,7 @@ def Germany():
     while led>=0 and led <60: #scroll all rows at the same time
         for rows in range(2,3):
             led_colour[led + rows*60] = (255,0,0)
-            led_colour[119 -led + rows*60] = (255,0,0)
+            led_colour[119 -led + rows*60] = (255,0,0)#two lines of red leds cross each other
             client.put_pixels(led_colour)
             sleep(0.1)
             led = led +1
@@ -222,31 +222,31 @@ def options():
                 print(f'your value is {x} and its type is {type(x)}')#prints the data type if its a number
                 break # exits while loop while keeeping value.
         except ValueError:
-            if x == 'one':
+            if x == 'one':#check if input entered can be translated to an in-range integer
                  x = 1
-                 break
-            elif x == 'two':
+                 break#if yes allow it 
+            elif x == 'two':#check if input entered can be translated to an in-range integer
                    x = 2
                    break
-            elif x == 'three':
+            elif x == 'three':#check if input entered can be translated to an in-range integer
                   x = 3
                   break
-            elif x == 'four':
+            elif x == 'four':#check if input entered can be translated to an in-range integer
                   x = 4
                   break
-            elif x == 'five':
+            elif x == 'five':#check if input entered can be translated to an in-range integer
                   x = 5
                   break
-            elif x == 'six':
+            elif x == 'six':#check if input entered can be translated to an in-range integer
                   x = 6
                   break
-            elif x == 'seven':
+            elif x == 'seven':#check if input entered can be translated to an in-range integer
                   x = 7
                   break
-            elif x == 'eight':
+            elif x == 'eight':#check if input entered can be translated to an in-range integer
                   x = 8
                   break
-            elif x=='nine':
+            elif x=='nine':#check if input entered can be translated to an in-range integer
                 x=9
                 break
                 
@@ -256,7 +256,7 @@ def options():
 
     
     if x == 1:
-        return Palestine()
+        return Palestine()#returns function with the defined flag
         
         
     elif x==2 :
@@ -272,26 +272,26 @@ def options():
     elif x==7:
         return Brazil()
     elif x==8:
-        #os.execv(sys.argv[0], sys.argv) # does not work, should restart
         sys.exit() #closes script
     elif x==9:
-        #os.execv(sys.executable, ['python'] + sys.argv)
+        #os.execv(sys.executable, ['python'] + sys.argv) does not work
+        #os.execv(sys.argv[0], sys.argv) # does not work, should restart
         print(" Restarted Sucessfully ")
         
         options()#resets the program
         
         
 def user():
-    print("Which country are you currently in?")
-    z=(input())
+    print("Which country are you currently in?")#asks the user for the country
+    z=(input())#input of the user
     
-    if z.isdigit()==False:
+    if z.isdigit()==False:#if the input is not a digit, allow it to continue 
         print("What is the weather in", z)
         
         
-    else:
+    else:#if input is a number, ask for a valid word
         print("Please enter a valid word")
-        return user()
+        return user() #repeats the question
         
     
         
@@ -336,11 +336,14 @@ def user():
         
         for i in range(360):#for all leds within the range
             
-            if i%3 ==0:#every 3 pixels
+            if i%2 ==0:#every 2 pixels
                 
-                screen[i] = blue#add color blue to the leds
-                sleep(0.01)
-                client.put_pixels(screen)#put leds in simulator
+                #screen[i] = blue#add color blue to the leds
+                led_colour2[359-i] = blue  #start from the middle of the simulator
+                led_colour2[i] = blue #add yellow to indv. pixs
+                sleep(0.02)#for speed
+                client.put_pixels(led_colour2)#put leds in simulator
+
                 
     elif z== 2 :
         print("Nice")
@@ -368,7 +371,7 @@ def user():
 	            
 	            if i%3 ==0:
 	                
-	                screen[i] = light_blue
+	                screen[i] = light_blue#add light blue colour to leds
 	                sleep(0.05)
 	        numpy.roll(screen, 2) #move every element 2 spaces forward
 	        client.put_pixels(screen)
