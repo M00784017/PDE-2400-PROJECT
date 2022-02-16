@@ -381,19 +381,19 @@ def user():
 
     elif z==4:
         print('Rainbow!!!!')
-        for hue in range(360):
+        for i in range(360):
             
             
-            rgb_fractional = colorsys.hsv_to_rgb(hue/360.0, s, v) 
+            rgb_fractional = colorsys.hsv_to_rgb(i/360.0, s, v) 
              
 
-            r_float = rgb_fractional[0] #extract said floating point numbers
-            g_float = rgb_fractional[1]
-            b_float = rgb_fractional[2]
+            r = rgb_fractional[0] #extract said floating point numbers
+            g = rgb_fractional[1]
+            b = rgb_fractional[2]
 
     
 
-            rgb = (r_float*176, g_float*200, b_float*255) 
+            rgb = (r*176, g*200, b*255) 
             pixels.append(rgb)
             
                         
@@ -514,15 +514,16 @@ def MoreAnimations():
                         
                
                 client.put_pixels(pixels)
-                sleep(0.1)
+                sleep(0.25)
 
             for cycles in range(len(led_colour1)):
                 cycles = 0
-                if cycles==10:
+                cycles+=1
+                if cycles==20:
                     break
                 else:
                     continue
-                        
+                            
             break #if the animation is done, repeat the script, allowing the user to exit if wanted
 
     elif T==4:
