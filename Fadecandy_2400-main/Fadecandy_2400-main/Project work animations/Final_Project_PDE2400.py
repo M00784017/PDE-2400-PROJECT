@@ -513,12 +513,12 @@ def MoreAnimations():
                         i = (gradiant + movement) % 360 #360 to cover all leds
                         color = []
                         for c in 0, 1, 2:
-                            color.append(drop[c]*deg + new_pixels[i][c]*(1-deg))#append new pixels
+                            color.append(drop[c]*deg + new_pixels[i][c]*(0.75-deg))#append new pixels
                             
                         new_pixels[i] = tuple(color)# converts it to a tuple
             pixels = new_pixels
             client.put_pixels(pixels)
-            sleep(0.2) #can be adjusted to make it faster or slower
+            sleep(0.4) #can be adjusted to make it faster or slower
     elif T==3:
         led=30
         while True:
