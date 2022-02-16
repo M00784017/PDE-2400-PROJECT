@@ -208,7 +208,7 @@ def Brazil():
                      
         client.put_pixels(led_colour)
         sleep(0.01)
-    print("CAPITAL CITY OF Brazil IS : Brasília")#prints the capital city for the chosen country
+    print("CAPITAL CITY OF BRAZIL IS : Brasília")#prints the capital city for the chosen country
 
 def Netherlands():
     led = 30#for leds to start in the middle and then split up
@@ -237,7 +237,7 @@ def Netherlands():
         client.put_pixels (led_colour)
         sleep(0.05)
         led=led-1
-    print("CAPITAL CITY OF Netherlands IS : Amsterdam")#prints the capital city for the chosen country
+    print("CAPITAL CITY OF NETHERLANDS IS : Amsterdam")#prints the capital city for the chosen country
 def options(): 
     
     print('\nEnter the number of the flag you wish to be displayed, eg:for Germany Flag, enter "five" or "5" all lower case. ') #asks the user to input their chosen animation 
