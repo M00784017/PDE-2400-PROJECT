@@ -7,10 +7,11 @@ Input = tk.Label(root, text = "Welcome, press on the animation you would like to
                 background = 'blue', width = 50, height = 2).grid(row = 1, column = 0)#asks the user to press on the animation, the width and height were to match the length of the text
 
 
-def Project_Trial_2():
-    import Project_Trial_2 #import this file when button is pressed
+def Final_Project_PDE2400():
+    import Final_Project_PDE2400 #import this file when button is pressed
     
 
-PT2 = tk.Button(root, text = 'PT2', command = Project_Trial_2).grid(row = 4, column = 0)
+Final = tk.Button(root, text = 'Final Project', command = Final_Project_PDE2400).grid(row = 4, column = 0)
 
 root.mainloop()
+
