@@ -2,13 +2,14 @@
 import opc #imports the simulator
 from time import sleep #we just need sleep from time
 import colorsys#used for rainbow animation
-import random#to assign random numbers and in shuffling
+import random#to assign random numbers and colours and in shuffling
 import numpy#to shift
 import os#used for exit 
 import sys#used for exit
 
 led_colour=[(0,0,0)]*360
 led_colour1=[(0,0,0)]*20
+led_colour3=[(0,0,0)]*360# I have 3 variables with the same value because it gets in the way when one animation using the same variable transitions to the other set of animations with the same variable.
 # The numbers in each letter represent a pixel in the simulator 60*6
 P = [0,1,2,3,60,61,62,63,64,120,121,122,123,124,125,180,181,182,183,184,185,240,241,242,243,244,300,301,302,303] 
 A = range(4,60) 
@@ -371,11 +372,11 @@ def user():
         
         for i in range(360):#for all leds within the range
             
-            if i%2 ==0:#every 2 pixels
+            if i%3 ==0:#every 2 pixels
                 
                 #screen[i] = blue#add color blue to the leds
-                led_colour2[359-i] = blue  #start from the begining and end of the simulator
-                led_colour2[i] = blue #add blue to indv. pixs
+                led_colour2[i] = (random.randint(0, 0), random.randint(0, 100), random.randint(150, 255))  #chose a random colour close to the range of blue
+                led_colour2[-i] = (random.randint(0, 0), random.randint(0, 100), random.randint(150, 255)) # -i is for the animation to go the opposite direction in this part
                 sleep(0.02)#for speed
                 client.put_pixels(led_colour2)#put leds in simulator
 
@@ -507,7 +508,7 @@ def MoreAnimations():
                if (random.randint(0,6) == 0) is True and speed==value:
                     
                     movement = random.randint(0, 360) #randomly moving between pixels
-                    drop = (random.randint(0, 256), random.randint(0, 256), random.randint(0, 256))#drop random colors between 0,256 in rgb
+                    drop = (random.randint(50, 256), random.randint(0, 256), random.randint(0, 256))#drop random colors between 0,256 in rgb
                     for gradiant, deg in fade:
                         i = (gradiant + movement) % 360 #360 to cover all leds
                         color = []
@@ -519,30 +520,34 @@ def MoreAnimations():
             client.put_pixels(pixels)
             sleep(0.2) #can be adjusted to make it faster or slower
     elif T==3:
+        led=30
         while True:
+            while led>=0:
+                for rows in range(6):
+                    led_colour3[led + rows*60]= (230,0,0) 
+                    
+                    led_colour3 [59-led + rows*60] = (255, 0, 0) 
+                    
+                
+
+                for rows in range(6):
+                    
+                    led_colour3[led-40 + rows*60]= (0,0,255)
+
+                client.put_pixels (led_colour3)
+                sleep(0.5)
+                led=led-1
+        
+            
     
-            for x in range (len(led_colour1)):
-                pixels = []
-                if x % 2 == 0:
-                    while(len(pixels) <= 360):
-                        pixels = pixels + ([red if x % 3 == 0 else blue]*16)
-                        pixels = pixels + ([blue if x % 3 == 0 else red]*16)
-
-                else:
-                    pixels = [green]*360
-                client.put_pixels(pixels)
-                sleep(0.1)
-
-
-
 
             for x in range (len(led_colour1)):
                 pixels = []
-                if int((x % (len(led_colour1)))*8) %2 ==0:
-                    if x%2 == 0:
-                        pixels = [blue]*360
-                    elif x%2==1:
-                        pixels = [red]*360        #blinks blue and red after each other
+                
+                if x%2 == 0:
+                    pixels = [blue]*360
+                elif x%2==1:
+                    pixels = [red]*360        #blinks blue and red after each other
                         
                         
                
