@@ -37,8 +37,7 @@ pixels = [] #start empty
 numLEDs=360#number of leds available in the simulator
 #FOR MOREANIMATIONS FUNCTION
 client = opc.Client('localhost:7890')
-value=[(-2, 0.05), (-2, 0.15), (-1, 0.2), (0, 0.40), (1, 0.1), (2, 0.01)] #the higher the values, the more the screen becomes whiter
-speed = value
+
 fade = [(0, 0.75), (1, 0.5), (2, 0.25), ]# incrementing by 1, -0.25
 
 
@@ -211,38 +210,11 @@ def Brazil():
         sleep(0.01)
     print("CAPITAL CITY OF BRAZIL IS : Brasília")#prints the capital city for the chosen country
 
-def Netherlands():
-    led = 30#for leds to start in the middle and then split up
-    
 
-    while led>=0:
-        for rows in range(2):
-            led_colour[led + rows*60]= (230,0,0) 
-            
-            led_colour [59-led + rows*60] = (230, 0, 0) #first 2 rows in red
-            
-        for rows in range(2,4):
-            led_colour[led + rows*60]= (255,255,255) #middle 2 rows in red
-            
-            led_colour [59- led + rows*60] = (255,255,255) 
-        for rows in range(4,6):
-            led_colour[led + rows*60]= (0,0,200) #last 2 rows in blue
-            
-            led_colour [59- led + rows*60] = (0,0,200) 
-
-        for rows in range(6):
-            
-            led_colour[led-40 + rows*60]= (0,0,0)#split them in 2 so that it becomes 2 flags and the middle part is empty
-        
-        
-        client.put_pixels (led_colour)
-        sleep(0.05)
-        led=led-1
-    print("CAPITAL CITY OF NETHERLANDS IS : Amsterdam")#prints the capital city for the chosen country
 def options(): 
     
     print('\nEnter the number of the flag you wish to be displayed, eg:for Germany Flag, enter "five" or "5" all lower case. ') #asks the user to input their chosen animation 
-    print('\n1. Palestine\n2. England\n3. Ireland\n4. Ukraine\n5. Germany\n6. Armenia\n7. Brazil\n8. Netherlands\n9. Exit\n10. Restart')#available options
+    print('\n1. Palestine\n2. England\n3. Ireland\n4. Ukraine\n5. Germany\n6. Armenia\n7. Brazil\n8. Exit\n9. Restart')#available options
    
     while True:
         x= input('Please enter a number between 1 and 10: ')
@@ -282,10 +254,7 @@ def options():
             elif x=='nine':#check if input entered can be translated to an in-range integer
                 x=9
                 break#if yes allow it
-            elif x=='ten':#check if input entered can be translated to an in-range integer
-                x=10
-                break#if yes allow it 
-                
+
             
         
         
@@ -306,10 +275,8 @@ def options():
     elif x==7:#if the user choses this value
         return Brazil()#returns function with the defined flag
     elif x==8:#if the user choses this value
-        return Netherlands()#returns function with the defined flag
-    elif x==9:#if the user choses this value
         sys.exit() #closes script
-    elif x==10:#if the user choses this value
+    elif x==9:#if the user choses this value
         #os.execv(sys.executable, ['python'] + sys.argv) does not work
         #os.execv(sys.argv[0], sys.argv) # does not work, should restart
         print(" Restarted Sucessfully ")#for confirmation purposes
@@ -440,7 +407,7 @@ def user():
         user()
 def MoreAnimations():
     print("This is the last set of animations. Please Select which animation you would like to see")
-    print("\n1 RGB Fading.\n2 Fading movement\n3.Police\n4.Exit\n5.Restart")
+    print("\n1 RGB Fading.\n2 Netherlands Flag\n3.Police\n4.Exit\n5.Restart")
     while True:
             T = input('Please enter a number between 1 and 5: ')
             try:
@@ -485,40 +452,35 @@ def MoreAnimations():
         
 
     elif T==2:
-        
-        pixels = [ (0,0,0) ] * 360
-        while True:
-            
-            new_pixels = list(pixels)
-            
-            for i in range(numLEDs):
-                pixels.append(i)#moves pixels to end of list
-                r, g, b = (0, 0, 0)#assign pixels
+        led = 30#for leds to start in the middle and then split up
+    
+
+        while led>=0:
+            for rows in range(2):
+                led_colour3[led + rows*60]= (230,0,0) 
                 
-                for gradiant, deg in speed: #speed=value
-                    
-                    j = (numLEDs+gradiant+i) % numLEDs
-                    fade_amount= pixels[j][1]
-                    r = r + fade_amount*deg
-                    g = g + fade_amount*deg
-                    b = b + fade_amount*deg
-                new_pixels[i] = max(2, min(255, r)), max(2, min(255, g)), max(2, min(255, b))
-                fade_amount=fade_amount +1
-            for x in range(360):
-               if (random.randint(0,6) == 0) is True and speed==value:
-                    
-                    movement = random.randint(0, 360) #randomly moving between pixels
-                    drop = (random.randint(50, 256), random.randint(0, 256), random.randint(0, 256))#drop random colors between 0,256 in rgb
-                    for gradiant, deg in fade:
-                        i = (gradiant + movement) % 360 #360 to cover all leds
-                        color = []
-                        for c in 0, 1, 2:
-                            color.append(drop[c]*deg + new_pixels[i][c]*(0.75-deg))#append new pixels
-                            
-                        new_pixels[i] = tuple(color)# converts it to a tuple
-            pixels = new_pixels
-            client.put_pixels(pixels)
-            sleep(0.4) #can be adjusted to make it faster or slower
+                led_colour3 [59-led + rows*60] = (230, 0, 0) #first 2 rows in red
+                
+            for rows in range(2,4):
+                led_colour3[led + rows*60]= (255,255,255) #middle 2 rows in red
+                
+                led_colour3 [59- led + rows*60] = (255,255,255) 
+            for rows in range(4,6):
+                led_colour3[led + rows*60]= (0,0,200) #last 2 rows in blue
+                
+                led_colour3 [59- led + rows*60] = (0,0,200) 
+
+            for rows in range(6):
+                
+                led_colour3[led-40 + rows*60]= (0,0,0)#split them in 2 so that it becomes 2 flags and the middle part is empty
+            
+            
+            client.put_pixels (led_colour3)
+            sleep(0.09)
+            led=led-1
+        print("CAPITAL CITY OF NETHERLANDS IS : Amsterdam")#prints the capital city for the chosen country
+        
+            
     elif T==3:
         led=30
         while True:
