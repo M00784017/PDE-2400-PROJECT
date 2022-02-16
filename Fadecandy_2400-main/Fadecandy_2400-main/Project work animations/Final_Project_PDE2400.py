@@ -486,7 +486,7 @@ def MoreAnimations():
 
     elif T==2:
         
-        pixels = [ (0,0,0) ] * numLEDs
+        pixels = [ (0,0,0) ] * 360
         while True:
             
             new_pixels = list(pixels)
@@ -524,29 +524,29 @@ def MoreAnimations():
         while True:
             while led>=0:
                 for rows in range(6):
-                    led_colour3[led + rows*60]= (230,0,0) 
+                    led_colour3[led + rows*60]= (230,0,0) #send red colours in both directions
                     
-                    led_colour3 [59-led + rows*60] = (255, 0, 0) 
+                    led_colour3 [59-led + rows*60] = (230, 0, 0) #animate them so red moves from middle to left and right
                     
                 
 
-                for rows in range(6):
+                for rows in range(6): #while still in range
                     
-                    led_colour3[led-40 + rows*60]= (0,0,255)
+                    led_colour3[led-40 + rows*60]= (0,0,255)#send blue leds in the middle between the 2 red
 
-                client.put_pixels (led_colour3)
+                client.put_pixels (led_colour3)#send pixels to the server
                 sleep(0.5)
                 led=led-1
         
             
-    
+    #this part is for the blinking siren, red-blue, red-blue etc.
 
             for x in range (len(led_colour1)):
                 pixels = []
                 
-                if x%2 == 0:
-                    pixels = [blue]*360
-                elif x%2==1:
+                if x%2 == 1:#start by checking
+                    pixels = [blue]*360 #fill simulator with blue
+                elif x%2==0:
                     pixels = [red]*360        #blinks blue and red after each other
                         
                         
