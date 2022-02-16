@@ -71,7 +71,7 @@ def Palestine():
         client.put_pixels(led_colour)
 
             
-    print("CAPITAL CITY OF PALESTINE IS : ALQUDS")
+    print("CAPITAL CITY OF PALESTINE IS : ALQUDS") #prints the capital city for the chosen country
         
 def England(): #I have made this to minimize use of code, I know its not ideal, but hopefully I will do something better   
     led=0
@@ -89,7 +89,7 @@ def England(): #I have made this to minimize use of code, I know its not ideal, 
                              
         client.put_pixels(led_colour)
         sleep(0.01)
-    print("CAPITAL CITY OF ENGLAND IS : LONDON")
+    print("CAPITAL CITY OF ENGLAND IS : LONDON")#prints the capital city for the chosen country
 def Ireland():
     led=0
     while led<20:
@@ -117,7 +117,7 @@ def Ireland():
         client.put_pixels(led_colour)
         sleep(0.1)
         led = led + 1
-    print("CAPITAL CITY OF IRELAND IS : DUBLIN")
+    print("CAPITAL CITY OF IRELAND IS : DUBLIN")#prints the capital city for the chosen country
 def Ukraine():
     led = 0
     #sleep(1)
@@ -138,7 +138,7 @@ def Ukraine():
             sleep(0.03)
             led = led+1
 
-    print("CAPITAL CITY OF UKRAINE IS : KIEV")
+    print("CAPITAL CITY OF UKRAINE IS : KIEV")#prints the capital city for the chosen country
 
 def Germany():
     led = 0
@@ -168,7 +168,7 @@ def Germany():
             client.put_pixels(led_colour)
             sleep(0.1)
             led = led+1
-    print("CAPITAL CITY OF GERMANY IS : BERLIN")
+    print("CAPITAL CITY OF GERMANY IS : BERLIN")#prints the capital city for the chosen country
 
   
 def Armenia():
@@ -178,13 +178,13 @@ def Armenia():
         for rows in range (2): #first 2 rows
             led_colour[59-led + rows * 60] = (255,0,0)
         for rows in range (2,4): #second 2 rows
-            led_colour[led + rows * 60] = (0,0,255)
+            led_colour[led + rows * 60] = (0,0,255)#the 2 blue rows in the middle scroll from the left to right
         for rows in range (4,6): #third 2 rows
-            led_colour[59-led + rows * 60] = (255,165,0)
+            led_colour[59-led + rows * 60] = (255,165,0)#2 orange rows scroll from the right to left
         client.put_pixels(led_colour)
         sleep(0.1)
-        led = led + 1
-    print("CAPITAL CITY OF ARMENIA IS : YEREVAN")
+        led = led + 1#increment by 1
+    print("CAPITAL CITY OF ARMENIA IS : YEREVAN")#prints the capital city for the chosen country
 def Brazil():
     led=0
     
@@ -195,11 +195,11 @@ def Brazil():
         if i >= 0 :
             led_colour[i] = (0,180,0) #returns all green at first
        
-        if i >= 140 and i <=160 or i >= 82 and i <= 98 or i>=25 and i<=35 or i>=200 and i<=220 or i>=262 and i<=278 or i>=325 and i<=335  :
-            led_colour[i] = (255,200,0) 
+        if i >= 140 and i <=160 or i >= 82 and i <= 98 or i>=25 and i<=35 or i>=200 and i<=220 or i>=262 and i<=278 or i>=325 and i<=335  : #if led is within the range specified
+            led_colour[i] = (255,200,0) #add yellow
             
-        if i>= 89 and i<=92 or  i>=148 and i<=153 or i>=208 and i<=213 or i>=269 and i<=272:
-            led_colour[i]=(0,0,255)
+        if i>= 89 and i<=92 or  i>=148 and i<=153 or i>=208 and i<=213 or i>=269 and i<=272:#if led is within the range specified
+            led_colour[i]=(0,0,255)#add blue
             
             client.put_pixels(led_colour)
                 
@@ -208,17 +208,46 @@ def Brazil():
                      
         client.put_pixels(led_colour)
         sleep(0.01)
-    print("CAPITAL CITY OF Brazil IS : Brasília")
+    print("CAPITAL CITY OF Brazil IS : Brasília")#prints the capital city for the chosen country
+
+def Netherlands():
+    led = 30#for leds to start in the middle and then split up
+    
+
+    while led>=0:
+        for rows in range(2):
+            led_colour[led + rows*60]= (230,0,0) 
+            
+            led_colour [59-led + rows*60] = (230, 0, 0) #first 2 rows in red
+            
+        for rows in range(2,4):
+            led_colour[led + rows*60]= (255,255,255) #middle 2 rows in red
+            
+            led_colour [59- led + rows*60] = (255,255,255) 
+        for rows in range(4,6):
+            led_colour[led + rows*60]= (0,0,200) #last 2 rows in blue
+            
+            led_colour [59- led + rows*60] = (0,0,200) 
+
+        for rows in range(6):
+            
+            led_colour[led-40 + rows*60]= (0,0,0)#split them in 2 so that it becomes 2 flags and the middle part is empty
+        
+        
+        client.put_pixels (led_colour)
+        sleep(0.05)
+        led=led-1
+    print("CAPITAL CITY OF Netherlands IS : Amsterdam")#prints the capital city for the chosen country
 def options(): 
     
-    print('\nEnter the number of the flag you wish to be displayed, eg:for Germany Flag, enter "five" or "5" all lower case. ')
-    print('\n1. Palestine\n2. England\n3. Ireland\n4. Ukraine\n5. Germany\n6. Armenia\n7. Brazil\n8. exit\n9. Restart')
-   # x = (input()) #the value from the user is an integer
+    print('\nEnter the number of the flag you wish to be displayed, eg:for Germany Flag, enter "five" or "5" all lower case. ') #asks the user to input their chosen animation 
+    print('\n1. Palestine\n2. England\n3. Ireland\n4. Ukraine\n5. Germany\n6. Armenia\n7. Brazil\n8. Netherlands\n9. Exit\n10. Restart')#available options
+   
     while True:
-        x= input('Please enter a number between 1 and 9: ')
+        x= input('Please enter a number between 1 and 10: ')
         try:
             x = int(x) #exception catch - if value isn't integer, go to except:
-            if x <1 or x > 9: #value validation:
+            if x <1 or x > 10: #value validation:
                 print('') #if not from the list:
              #return to top of while and ask again
             else: #if correct value:
@@ -230,56 +259,59 @@ def options():
                  break#if yes allow it 
             elif x == 'two':#check if input entered can be translated to an in-range integer
                    x = 2
-                   break
+                   break#if yes allow it 
             elif x == 'three':#check if input entered can be translated to an in-range integer
                   x = 3
-                  break
+                  break#if yes allow it 
             elif x == 'four':#check if input entered can be translated to an in-range integer
                   x = 4
-                  break
+                  break#if yes allow it  
             elif x == 'five':#check if input entered can be translated to an in-range integer
                   x = 5
-                  break
+                  break#if yes allow it 
             elif x == 'six':#check if input entered can be translated to an in-range integer
                   x = 6
-                  break
+                  break#if yes allow it 
             elif x == 'seven':#check if input entered can be translated to an in-range integer
                   x = 7
-                  break
+                  break#if yes allow it 
             elif x == 'eight':#check if input entered can be translated to an in-range integer
                   x = 8
-                  break
+                  break#if yes allow it 
             elif x=='nine':#check if input entered can be translated to an in-range integer
                 x=9
-                break
+                break#if yes allow it
+            elif x=='ten':#check if input entered can be translated to an in-range integer
+                x=10
+                break#if yes allow it 
                 
             
         
         
 
     
-    if x == 1:
-        return Palestine()#returns function with the defined flag
-        
-        
-    elif x==2 :
-        return England()
-    elif x==3:
-        return Ireland()
-    elif x==4:
-        return Ukraine()
-    elif x==5:
-        return Germany()
-    elif x==6:
-        return Armenia()
-    elif x==7:
-        return Brazil()
-    elif x==8:
+    if x == 1: #if the user choses this value
+        return Palestine()#returns function with the defined flag      
+    elif x==2 :#if the user choses this value
+        return England()#returns function with the defined flag
+    elif x==3:#if the user choses this value
+        return Ireland()#returns function with the defined flag
+    elif x==4:#if the user choses this value
+        return Ukraine()#returns function with the defined flag
+    elif x==5:#if the user choses this value
+        return Germany()#returns function with the defined flag
+    elif x==6:#if the user choses this value
+        return Armenia()#returns function with the defined flag
+    elif x==7:#if the user choses this value
+        return Brazil()#returns function with the defined flag
+    elif x==8:#if the user choses this value
+        return Netherlands()#returns function with the defined flag
+    elif x==9:#if the user choses this value
         sys.exit() #closes script
-    elif x==9:
+    elif x==10:#if the user choses this value
         #os.execv(sys.executable, ['python'] + sys.argv) does not work
         #os.execv(sys.argv[0], sys.argv) # does not work, should restart
-        print(" Restarted Sucessfully ")
+        print(" Restarted Sucessfully ")#for confirmation purposes
         
         options()#resets the program
         
@@ -312,7 +344,7 @@ def user():
             else: #if correct value:
                 print(f'your value is {z} and its type is {type(z)}') #prints the data type if its a number
                 break # exits while loop while keeeping value.
-        except ValueError:
+        except ValueError: #exception values that can be allowed
             if z == 'one':
                  z = 1
                  break
@@ -474,15 +506,15 @@ def MoreAnimations():
             for x in range(360):
                if (random.randint(0,6) == 0) is True and speed==value:
                     
-                    movement = random.randint(0, 360)
-                    drop = (random.randint(0, 256), random.randint(0, 256), random.randint(0, 256))
+                    movement = random.randint(0, 360) #randomly moving between pixels
+                    drop = (random.randint(0, 256), random.randint(0, 256), random.randint(0, 256))#drop random colors between 0,256 in rgb
                     for gradiant, deg in fade:
                         i = (gradiant + movement) % 360 #360 to cover all leds
                         color = []
                         for c in 0, 1, 2:
-                            color.append(drop[c]*deg + new_pixels[i][c]*(1-deg))
+                            color.append(drop[c]*deg + new_pixels[i][c]*(1-deg))#append new pixels
                             
-                        new_pixels[i] = tuple(color)
+                        new_pixels[i] = tuple(color)# converts it to a tuple
             pixels = new_pixels
             client.put_pixels(pixels)
             sleep(0.2) #can be adjusted to make it faster or slower
@@ -524,7 +556,7 @@ def MoreAnimations():
                 else:
                     continue
                         
-                break
+            break #if the animation is done, repeat the script, allowing the user to exit if wanted
 
     elif T==4:
         
