@@ -176,7 +176,7 @@ def Armenia():
 
     while led < 60 :#scroll all rows at the same time
         for rows in range (2): #first 2 rows
-            led_colour[59-led + rows * 60] = (255,0,0)
+            led_colour[59-led + rows * 60] = (255,0,0) #2 red rows scroll from the right to left
         for rows in range (2,4): #second 2 rows
             led_colour[led + rows * 60] = (0,0,255)#the 2 blue rows in the middle scroll from the left to right
         for rows in range (4,6): #third 2 rows
