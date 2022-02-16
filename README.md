@@ -41,7 +41,7 @@ if a user enters a word that corresponds to a number listed the in the except Va
 Function 9 is the user function. This is the second part of the animation and it is a simple one. The code asks the user 
 to input the country they are in. After that, it asks for the weather in this country using 4 choices and displays an animation based on the input. The same error handling is applied as mentioned above.
 *********************
-Function 10 is the More Animations function and in here there are 3 nice animations for the user to pick from. The 4th option is to exit, and the 5th is to restart. I tried my best to make the animations good and creative and different. Just like functions 9 and 10, the UI implemented is the same and accumulates to all possible encounters and inputs.
+Function 10 is the More Animations function and in here there are 3 nice animations for the user to pick from. The 4th option is to exit, and the 5th is to restart. I tried my best to make the animations good and creative and different. Just like functions 8 and 9, the UI implemented is the same and accumulates to all possible encounters and inputs.
 
 
 
@@ -56,19 +56,20 @@ Animation 1 is the flag of palestine and all the leds turn to the flag of Palest
 Weather animations are all the same at the moment with one difference, which is the color. For instance, if the user choses rainy as the weather, the screen will light with blue colors, if weather==sunny, then the screen will light with yellow.
 The last 3 animations are the most creative. The first animation is called the fading animation. Here, 3 colors fade consecutively after each other resulting in a nice pattern. The second one is the netherlands flag wher it splits the flag in half and each part goes in a corner(either left or right). The third one is the police animation and it flashes the colors of the siren repeatedly.
 ********************
-Instructions on how to start. PS:all numbers entered using a word should be enetered by lower case, eg: 1 is one and 7 is seven.
+Instructions on how to start. PS:all numbers entered using a word should be enetered by lower case, eg: 1 is 'one' and 7 is 'seven'.
 
-1-Open the file.
-2-Run the idle
-3-Chose from the first list of animations either by entering the number or the word number, eg: if you want the 3rd flag, either enter three or 3. Enter 8 or eight if you wish to leave.Enter 9 or nineif you wish to restart.
-4-Enjoy the animation.
-5-The second input pops in the idle, asking you which country are you currently in.
-6-Enter the country you are in by typing the word, if the input entered is a number, an rror will pop asking for a word not a number.
-7-Then choose the weather your country is experiencing by entering the number or the word number, eg: if you want the 2nd weather animation, either enter two or 2. Enter 5 or five if you wish to leave.
-8- Enjoy the animation.
-9- The third input pops in the idle, asking you to choose between the last 3 animations.
-10-Chose from the last list of animations either by entering the number or the word number, eg: if you want the 1st animation, either enter one or 1. Enter 4 or four if you wish to leave.Enter 5 or fiveif you wish to restart.
-11- That is the end, Thank you.
+1-Open the file, and the opc simulator. Make sure the python file is in the same folder as the opc, or else it will tell you 'opc module not found'.
+2-Run the idle.
+3-Tkinter will appear asking you to press on the button of the project.(This is done for easier use for the user)
+4-Idle will appear.Choose from the first list of animations either by entering the number or the word number, eg: if you want the 3rd flag, either enter three or 3. Enter 8 or eight if you wish to leave.Enter 9 or nineif you wish to restart.
+5-Enjoy the animation.
+6-The second input pops in the idle, asking you which country are you currently in.
+7-Enter the country you are in by typing the word, if the input entered is a number, an rror will pop asking for a word not a number.
+8-Then choose the weather your country is experiencing by entering the number or the word number, eg: if you want the 2nd weather animation, either enter two or 2. Enter 5 or five if you wish to leave.
+9- Enjoy the animation.
+10- The third input pops in the idle, asking you to choose between the last 3 animations.
+11-Chose from the last list of animations either by entering the number or the word number, eg: if you want the 1st animation, either enter one or 1. Enter 4 or four if you wish to leave.Enter 5 or fiveif you wish to restart.
+12- That is the end, Thank you.
 
 
 
