@@ -54,7 +54,7 @@ Animations Explanation
 
 Animation 1 is the flag of palestine and all the leds turn to the flag of Palestine, then the UI will print the capital of this country. The same goes for the other 6 countries.
 Weather animations are all the same at the moment with one difference, which is the color. For instance, if the user choses rainy as the weather, the screen will light with blue colors, if weather==sunny, then the screen will light with yellow.
-The last 3 animations are the most creative. The first animation is called the fading animation. Here, 3 colors fade consecutively after each other resulting in a nice pattern. The second one is the netherlands flag wher it splits the flag in half and each part goes in a corner(either left or right). The third one is the police animation and it flashes the colors of the siren repeatedly.
+The last 4 animations are the most creative. The first animation is called the fading animation. Here, 3 colors fade consecutively after each other resulting in a nice pattern. The second one is the netherlands flag wher it splits the flag in half and each part goes in a corner(either left or right). The third one is the police animation and it flashes the colors of the siren repeatedly. The 4th one is 6 different colors scrolling making a beautiful animation.
 ********************
 Instructions on how to start. PS:all numbers entered using a word should be enetered by lower case, eg: 1 is 'one' and 7 is 'seven'.
 

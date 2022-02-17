@@ -407,12 +407,12 @@ def user():
         user()
 def MoreAnimations():
     print("This is the last set of animations. Please Select which animation you would like to see")
-    print("\n1 RGB Fading.\n2 Netherlands Flag\n3.Police\n4.Exit\n5.Restart")
+    print("\n1 RGB Fading.\n2 Netherlands Flag\n3.Police\n4.Scrlloing Colours\n5.Exit\n6.Restart")
     while True:
             T = input('Please enter a number between 1 and 5: ')
             try:
                 T = int(T) #exception catch - if value isn't integer, go to except:
-                if T <1 or T > 5: #value validation:
+                if T <1 or T > 6: #value validation:
                     print('') #if not from the list:
                  #return to top of while and ask again
                 else: #if correct value:
@@ -433,6 +433,9 @@ def MoreAnimations():
                       break
                 elif T=='five':
                     T=5
+                    break
+                elif T=='six':
+                    T=6
                     break
 
     if T==1:
@@ -525,11 +528,32 @@ def MoreAnimations():
                     continue
                             
             break #if the animation is done, repeat the script, allowing the user to exit if wanted
-
     elif T==4:
+        led = 360
+    
+
+        while led>=60:
+            for rows in range(2):
+                #leds[led + rows*60]= (0,200,255) 
+                
+                led_colour3 [59-led + rows*60] = (255, 0, 0) 
+                
+                led_colour3 [119-led + rows*60] = (128,0,128)
+                led_colour3 [179- led + rows*60] = (0,0,255)
+                led_colour3 [239- led + rows*60] = (255,47,153)
+                led_colour3 [299- led + rows*60] = (255,170,0)
+                led_colour3 [359- led + rows*60] = (0,130,255)
+
+            
+            
+            
+            client.put_pixels (led_colour3)
+            sleep(0.02)
+            led=led-1
+    elif T==5:
         
         sys.exit() #closes script
-    elif T==5:
+    elif T==6:
         print(" Restarted Sucessfully ")
         options()
         user()
