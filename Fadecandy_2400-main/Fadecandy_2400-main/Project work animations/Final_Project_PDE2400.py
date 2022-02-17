@@ -38,7 +38,7 @@ numLEDs=360#number of leds available in the simulator
 #FOR MOREANIMATIONS FUNCTION
 client = opc.Client('localhost:7890')
 
-fade = [(0, 0.75), (1, 0.5), (2, 0.25), ]# incrementing by 1, -0.25
+
 
 
 new_leds=numLEDs*6%64
@@ -217,7 +217,7 @@ def options():
     print('\n1. Palestine\n2. England\n3. Ireland\n4. Ukraine\n5. Germany\n6. Armenia\n7. Brazil\n8. Exit\n9. Restart')#available options
    
     while True:
-        x= input('Please enter a number between 1 and 10: ')
+        x= input('Please enter a number between 1 and 9: ')
         try:
             x = int(x) #exception catch - if value isn't integer, go to except:
             if x <1 or x > 9: #value validation:
@@ -409,7 +409,7 @@ def MoreAnimations():
     print("This is the last set of animations. Please Select which animation you would like to see")
     print("\n1 RGB Fading.\n2 Netherlands Flag\n3.Police\n4.Scrlloing Colours\n5.Exit\n6.Restart")
     while True:
-            T = input('Please enter a number between 1 and 5: ')
+            T = input('Please enter a number between 1 and 6: ')
             try:
                 T = int(T) #exception catch - if value isn't integer, go to except:
                 if T <1 or T > 6: #value validation:
