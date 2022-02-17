@@ -1,5 +1,8 @@
 # PDE-2400-PROJECT, YOU CAN FIND THE FINAL PROJECT PYTHON FILE INSIDE THE FOLDER CALLED PROJECT WORK ANIMATIONS AND IT IS CALLED Final_Project_PDE2400. For easier use, open the file called 'Using Tkinter' and run it.
 
+****************
+This project was done during the period from 4 Jnuary 2022 to 17 February 2022. My consistency is documented through Github, although I have changed my python file name several times so it might not show all commits on the same name. I have been able to constantly update my repository more than 3-4 times a week for the past 4 weeks.
+*****************
 #####Libraries used
 ****************
 1## simulator:
@@ -7,17 +10,17 @@ The simulator has 360 built in leds in 6 rows and each row contains 60 leds.
 LEDs.
 2##import opc:
 Calls out the simulator
-##from time import sleep:
+3##from time import sleep:
 Imports sleep from time because we dont need the whole library
-3##import colorsys:
+4##import colorsys:
 Used to integrate hsv value and saturation to some animations
-4##import random:
+5##import random:
 Used to shuffle random colors or colors between a specified range, eg: random.radint(0,255)
-5##import numpy:
+6##import numpy:
 used to roll and shift in weather animations
-6##import os:
+7##import os:
 used to input an option for exit 
-7##import sys
+8##import sys
 used to input an option for exit 
 *******************
 #####functions used
@@ -82,48 +85,26 @@ Instructions on how to start. PS:all numbers entered using a word should be enet
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Students will be writing code related to an engineering project, and submit regularly 
-to a dedicated repository. The final version of their software will be demonstrated via 
-video submission to the instructors at week 18.
-Students will have to write Python code for creating an original light animation on 6 
-LED bars.
-What has been done:
-Week 12: 
+My Timeline: #week end date
+Week 12: (09-01-22)
 -Created github account and made a new repository.
+Week 13:(16-01-22)
 -Started researching fadecandy and trying out some simple examples to see how it works
-Week 13:
+Week 14:(23-01-22)
 -Started working on my first project trial with basic functions and animations, and received feedback from Denis regarding that.
 -Made some changes to function names and removing the 'return' in each function as it was not necessary.
 -Submitted several commits and changes over the week.
+WEEK15:(30-01-22)
+-Made some animations of flags and decided I will do Flags animation
+-Made more advanced animation and tried to minimize code
+
+Week 16:(06-02-22)
+-continued with adding Flags
+-Debugging code
+-Added more creative animations to my code .
+
+WEEK17:(13-02-22)
+- Addded 2 final flags to the animation list.
+-Improve code reusability and add more comments
+Week 18:(17-02-22)
+-Finalise code and submit .
