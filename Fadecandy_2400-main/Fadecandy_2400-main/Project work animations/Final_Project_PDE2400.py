@@ -32,7 +32,7 @@ blue=(0,0,255)#blue color number in rgb
 light_blue=(173, 216, 230)#light_blue color number in rgb
 client = opc.Client('localhost:7890') #connects to simulator
 s = 1 #saturation max 1.0 so i don't have to redefine calculations as floating point later on 
-v = 0.9 #value max 
+v = 1 #value max 
 pixels = [] #start empty
 numLEDs=360#number of leds available in the simulator
 #FOR MOREANIMATIONS FUNCTION
@@ -393,7 +393,7 @@ def user():
 
     
 
-            rgb = (r*176, g*200, b*255) 
+            rgb = (r*random.randint(100,200), g*random.randint(150,200), b*random.randint(170,255)) #random colours between a range that makes sense for a rainbow
             pixels.append(rgb)
             
                         
