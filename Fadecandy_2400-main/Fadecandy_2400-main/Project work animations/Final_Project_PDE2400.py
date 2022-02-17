@@ -220,7 +220,7 @@ def options():
         x= input('Please enter a number between 1 and 10: ')
         try:
             x = int(x) #exception catch - if value isn't integer, go to except:
-            if x <1 or x > 10: #value validation:
+            if x <1 or x > 9: #value validation:
                 print('') #if not from the list:
              #return to top of while and ask again
             else: #if correct value:
@@ -529,7 +529,7 @@ def MoreAnimations():
                             
             break #if the animation is done, repeat the script, allowing the user to exit if wanted
     elif T==4:
-        led = 360
+        led = 359
     
 
         while led>=60:
