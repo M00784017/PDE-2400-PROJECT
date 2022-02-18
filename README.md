@@ -1,7 +1,7 @@
 # PDE-2400-PROJECT, YOU CAN FIND THE FINAL PROJECT PYTHON FILE INSIDE THE FOLDER CALLED PROJECT WORK ANIMATIONS AND IT IS CALLED Final_Project_PDE2400. For easier use, open the file called 'Using Tkinter' and run it.
 
 ****************
-This project was done during the period from 4 Jnuary 2022 to 17 February 2022. My consistency is documented through Github, although I have changed my python file name several times so it might not show all commits on the same name. I have been able to constantly update my repository more than 3-4 times a week for the past 4 weeks.
+This project was done during the period from 4 January 2022 to 17 February 2022. My consistency is documented through Github, although I have changed my python file name several times so it might not show all commits on the same name. I have been able to constantly update my repository more than 3-4 times a week for the past 4 weeks.
 *****************
 #####Libraries used
 ****************
