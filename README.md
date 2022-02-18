@@ -44,7 +44,7 @@ if a user enters a word that corresponds to a number listed the in the except Va
 Function 9 is the user function. This is the second part of the animation and it is a simple one. The code asks the user 
 to input the country they are in. After that, it asks for the weather in this country using 4 choices and displays an animation based on the input. The same error handling is applied as mentioned above.
 *********************
-Function 10 is the More Animations function and in here there are 3 nice animations for the user to pick from. The 4th option is to exit, and the 5th is to restart. I tried my best to make the animations good and creative and different. Just like functions 8 and 9, the UI implemented is the same and accumulates to all possible encounters and inputs.
+Function 10 is the More Animations function and in here there are 4 nice animations for the user to pick from. The 4th option is to exit, and the 5th is to restart. I tried my best to make the animations good and creative and different. Just like functions 8 and 9, the UI implemented is the same and accumulates to all possible encounters and inputs.
 
 
 
